@@ -13,8 +13,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let center = UNUserNotificationCenter.current()
+                
+        center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { granted, error in
+            guard granted else {return}
+            
+            center.getNotificationSettings(completionHandler: { settings in
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            })
+        })
+        
         return true
+
     }
 
     // MARK: UISceneSession Lifecycle
