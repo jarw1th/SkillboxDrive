@@ -1,0 +1,120 @@
+{
+  "" : {
+    "dependencies" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire-master.d",
+    "diagnostics" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire-master.dia",
+    "emit-module-dependencies" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire-master-emit-module.dia",
+    "swift-dependencies" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire-master.swiftdeps"
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/AFError.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Alamofire.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/AlamofireExtended.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/AuthenticationInterceptor.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/CachedResponseHandler.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Combine.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Concurrency.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/DispatchQueue+Alamofire.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/EventMonitor.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/HTTPHeaders.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/HTTPMethod.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/MultipartFormData.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/MultipartUpload.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/NetworkReachabilityManager.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Notifications.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/OperationQueue+Alamofire.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/ParameterEncoder.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/ParameterEncoding.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Protected.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/RedirectHandler.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Request.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/RequestCompression.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/RequestInterceptor.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/RequestTaskMap.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Response.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/ResponseSerialization.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Result+Alamofire.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/RetryPolicy.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/ServerTrustEvaluation.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Session.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/SessionDelegate.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/StringEncoding+Alamofire.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/URLConvertible+URLRequestConvertible.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/URLEncodedFormEncoder.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/URLRequest+Alamofire.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/URLSessionConfiguration+Alamofire.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/Pods/Alamofire/Source/Validation.swift" : {
+
+  }
+}

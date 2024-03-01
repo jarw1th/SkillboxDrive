@@ -1,0 +1,59 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "40d61ad7839f4300e952216cca5780e6ad8ab5bff3b734097277f2c303b6f1f3"
+    }
+  ],
+  "containerPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox.xcworkspace",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphonesimulator",
+      "sdk" : "iphonesimulator17.2",
+      "sdkVariant" : "iphonesimulator",
+      "supportedArchitectures" : [
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Build/Products",
+      "pchPath" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

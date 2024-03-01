@@ -1,0 +1,96 @@
+{
+  "" : {
+    "dependencies" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/Objects-normal/arm64/ydisk_skillbox-master.d",
+    "diagnostics" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/Objects-normal/arm64/ydisk_skillbox-master.dia",
+    "emit-module-dependencies" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/Objects-normal/arm64/ydisk_skillbox-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/Objects-normal/arm64/ydisk_skillbox-master-emit-module.dia",
+    "swift-dependencies" : "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/Objects-normal/arm64/ydisk_skillbox-master.swiftdeps"
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/DerivedSources/CoreDataGenerated/Model/Files+CoreDataClass.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/DerivedSources/CoreDataGenerated/Model/Files+CoreDataProperties.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/DerivedSources/CoreDataGenerated/Model/Model+CoreDataModel.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/DerivedData/ydisk_skillbox/Index.noindex/Build/Intermediates.noindex/ydisk_skillbox.build/Debug-iphoneos/ydisk_skillbox.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/API/DataRequest.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/API/DataStructures.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/AppDelegate.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Cells/DefaultTableViewCell.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Constants.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/CoreData/Files+CoreDataClass.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/CoreData/Files+CoreDataProperties.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/LastUploaded/LastUploadedModel.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/LastUploaded/LastUploadedPresenter.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/LastUploaded/LastUploadedViewController.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Login/LoginModel.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Login/LoginPresenter.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Login/LoginViewController.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding1/FirstOnboardingModel.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding1/FirstOnboardingPresenter.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding1/FirstOnboardingViewController.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding2/SecondOnboardingModel.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding2/SecondOnboardingPresenter.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding2/SecondOnboardingViewController.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding3/ThirdOnboardingModel.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding3/ThirdOnboardingPresenter.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/Onboarding3/ThirdOnboardingViewController.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/SceneDelegate.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/SkillboxActivityIndicator.swift" : {
+
+  },
+  "/Users/jarwith/Main/Work/XCode/diplom_ios_lvl1/ydisk_skillbox/ydisk_skillbox/UIKitExtensions.swift" : {
+
+  }
+}
