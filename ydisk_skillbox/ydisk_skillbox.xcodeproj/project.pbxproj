@@ -39,6 +39,14 @@
 		21F437782B925E8D004408EF /* SecondOnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437752B925E8D004408EF /* SecondOnboardingPresenter.swift */; };
 		21F437792B925E8D004408EF /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437762B925E8D004408EF /* SecondOnboardingViewController.swift */; };
 		21F4377A2B925E8D004408EF /* SecondOnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437772B925E8D004408EF /* SecondOnboardingModel.swift */; };
+		21F4377D2B92631B004408EF /* LastUploadedPDFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4377C2B92631B004408EF /* LastUploadedPDFModel.swift */; };
+		21F4377F2B926325004408EF /* LastUploadedPDFPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4377E2B926325004408EF /* LastUploadedPDFPresenter.swift */; };
+		21F437812B92632E004408EF /* LastUploadedPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437802B92632E004408EF /* LastUploadedPDFViewController.swift */; };
+		21F437852B93B1CA004408EF /* AllFiles+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437832B93B1CA004408EF /* AllFiles+CoreDataClass.swift */; };
+		21F437862B93B1CA004408EF /* AllFiles+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437842B93B1CA004408EF /* AllFiles+CoreDataProperties.swift */; };
+		21F437892B94921C004408EF /* RenameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437882B94921C004408EF /* RenameModel.swift */; };
+		21F4378B2B949227004408EF /* RenamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4378A2B949227004408EF /* RenamePresenter.swift */; };
+		21F4378D2B949233004408EF /* RenameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4378C2B949233004408EF /* RenameViewController.swift */; };
 		B0F3A80AA9FF3360DFCB3B6A /* Pods_ydisk_skillbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5EAED44B267E0B6F3610CC /* Pods_ydisk_skillbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +86,14 @@
 		21F437752B925E8D004408EF /* SecondOnboardingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondOnboardingPresenter.swift; sourceTree = "<group>"; };
 		21F437762B925E8D004408EF /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
 		21F437772B925E8D004408EF /* SecondOnboardingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondOnboardingModel.swift; sourceTree = "<group>"; };
+		21F4377C2B92631B004408EF /* LastUploadedPDFModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUploadedPDFModel.swift; sourceTree = "<group>"; };
+		21F4377E2B926325004408EF /* LastUploadedPDFPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUploadedPDFPresenter.swift; sourceTree = "<group>"; };
+		21F437802B92632E004408EF /* LastUploadedPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUploadedPDFViewController.swift; sourceTree = "<group>"; };
+		21F437832B93B1CA004408EF /* AllFiles+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllFiles+CoreDataClass.swift"; sourceTree = "<group>"; };
+		21F437842B93B1CA004408EF /* AllFiles+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllFiles+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		21F437882B94921C004408EF /* RenameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenameModel.swift; sourceTree = "<group>"; };
+		21F4378A2B949227004408EF /* RenamePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenamePresenter.swift; sourceTree = "<group>"; };
+		21F4378C2B949233004408EF /* RenameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenameViewController.swift; sourceTree = "<group>"; };
 		9E7C619F95D714C947495E95 /* Pods-ydisk_skillbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ydisk_skillbox.debug.xcconfig"; path = "Target Support Files/Pods-ydisk_skillbox/Pods-ydisk_skillbox.debug.xcconfig"; sourceTree = "<group>"; };
 		F7962FAF956CBDCE7B8B888F /* Pods-ydisk_skillbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ydisk_skillbox.release.xcconfig"; path = "Target Support Files/Pods-ydisk_skillbox/Pods-ydisk_skillbox.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,6 +220,8 @@
 		21F437602B9212AE004408EF /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				21F437832B93B1CA004408EF /* AllFiles+CoreDataClass.swift */,
+				21F437842B93B1CA004408EF /* AllFiles+CoreDataProperties.swift */,
 				21F437572B920B25004408EF /* Model.xcdatamodeld */,
 				21F4375B2B920B83004408EF /* Files+CoreDataClass.swift */,
 				21F4375C2B920B83004408EF /* Files+CoreDataProperties.swift */,
@@ -244,8 +262,8 @@
 			isa = PBXGroup;
 			children = (
 				21F4376B2B924A10004408EF /* TabBarController.swift */,
+				21F437822B9378AC004408EF /* LastUploadedTab */,
 				21F437622B9234BF004408EF /* AllFiles */,
-				21F437452B91E0E7004408EF /* LastUploaded */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -270,6 +288,36 @@
 				21F437422B91D24B004408EF /* API */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		21F4377B2B9262FD004408EF /* LastUploadedPDF */ = {
+			isa = PBXGroup;
+			children = (
+				21F4377C2B92631B004408EF /* LastUploadedPDFModel.swift */,
+				21F4377E2B926325004408EF /* LastUploadedPDFPresenter.swift */,
+				21F437802B92632E004408EF /* LastUploadedPDFViewController.swift */,
+			);
+			path = LastUploadedPDF;
+			sourceTree = "<group>";
+		};
+		21F437822B9378AC004408EF /* LastUploadedTab */ = {
+			isa = PBXGroup;
+			children = (
+				21F437872B9491F3004408EF /* Rename */,
+				21F4377B2B9262FD004408EF /* LastUploadedPDF */,
+				21F437452B91E0E7004408EF /* LastUploaded */,
+			);
+			path = LastUploadedTab;
+			sourceTree = "<group>";
+		};
+		21F437872B9491F3004408EF /* Rename */ = {
+			isa = PBXGroup;
+			children = (
+				21F437882B94921C004408EF /* RenameModel.swift */,
+				21F4378A2B949227004408EF /* RenamePresenter.swift */,
+				21F4378C2B949233004408EF /* RenameViewController.swift */,
+			);
+			path = Rename;
 			sourceTree = "<group>";
 		};
 		603D3D56733B7F818102BD45 /* Pods */ = {
@@ -397,33 +445,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F4373A2B910728004408EF /* LoginPresenter.swift in Sources */,
+				21F437812B92632E004408EF /* LastUploadedPDFViewController.swift in Sources */,
 				21F437442B91D27D004408EF /* DataStructures.swift in Sources */,
 				21F437782B925E8D004408EF /* SecondOnboardingPresenter.swift in Sources */,
+				21F4378B2B949227004408EF /* RenamePresenter.swift in Sources */,
 				21365E362B8F02B3006CDC17 /* AppDelegate.swift in Sources */,
 				21F4374B2B91E11F004408EF /* LastUploadedViewController.swift in Sources */,
 				21F4377A2B925E8D004408EF /* SecondOnboardingModel.swift in Sources */,
+				21F437862B93B1CA004408EF /* AllFiles+CoreDataProperties.swift in Sources */,
 				21F437212B90C894004408EF /* SkillboxActivityIndicator.swift in Sources */,
 				21365E4F2B8F09FD006CDC17 /* FirstOnboardingPresenter.swift in Sources */,
 				21F4376E2B925188004408EF /* Reachability.swift in Sources */,
 				21365E4D2B8F09E6006CDC17 /* FirstOnboardingModel.swift in Sources */,
 				21F437792B925E8D004408EF /* SecondOnboardingViewController.swift in Sources */,
 				21F4376A2B9244C8004408EF /* AppConfig.swift in Sources */,
+				21F437892B94921C004408EF /* RenameModel.swift in Sources */,
 				21F4375E2B920B83004408EF /* Files+CoreDataProperties.swift in Sources */,
+				21F4378D2B949233004408EF /* RenameViewController.swift in Sources */,
 				21F4374E2B91ECDD004408EF /* DefaultTableViewCell.swift in Sources */,
 				21365E382B8F02B3006CDC17 /* SceneDelegate.swift in Sources */,
 				21F437472B91E106004408EF /* LastUploadedModel.swift in Sources */,
 				21365E5F2B8F4384006CDC17 /* ThirdOnboardingViewController.swift in Sources */,
 				21365E4A2B8F0656006CDC17 /* Constants.swift in Sources */,
 				21F437382B91071B004408EF /* LoginModel.swift in Sources */,
+				21F4377F2B926325004408EF /* LastUploadedPDFPresenter.swift in Sources */,
 				21365E632B8F4398006CDC17 /* ThirdOnboardingModel.swift in Sources */,
 				21F437642B9234D7004408EF /* AllFilesViewController.swift in Sources */,
 				21F4373C2B910735004408EF /* LoginViewController.swift in Sources */,
 				21F4375D2B920B83004408EF /* Files+CoreDataClass.swift in Sources */,
 				21F437492B91E10F004408EF /* LastUploadedPresenter.swift in Sources */,
+				21F4377D2B92631B004408EF /* LastUploadedPDFModel.swift in Sources */,
 				21365E552B8F1FF6006CDC17 /* UIKitExtensions.swift in Sources */,
 				21365E512B8F0A0F006CDC17 /* FirstOnboardingViewController.swift in Sources */,
 				21F4376C2B924A10004408EF /* TabBarController.swift in Sources */,
 				21F4373E2B9198B9004408EF /* DataRequest.swift in Sources */,
+				21F437852B93B1CA004408EF /* AllFiles+CoreDataClass.swift in Sources */,
 				21365E612B8F438F006CDC17 /* ThirdOnboardingPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

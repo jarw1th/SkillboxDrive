@@ -15,6 +15,10 @@ class TabBarController: UITabBarController {
         let vc1 = UINavigationController(rootViewController: LastUploadedViewController())
         let vc2 = UINavigationController(rootViewController: AllFilesViewController())
         let vc3 = UINavigationController(rootViewController: UIViewController())
+        
+        vc1.navigationBar.titleTextAttributes = [.foregroundColor: Constants.Colors.Accent1!]
+        vc1.navigationBar.tintColor = Constants.Colors.Accent1
+        
         vc1.title = "0"
         vc1.tabBarItem = UITabBarItem(title: "Title", image: UIImage(named: "pencil"), tag: 0)
         vc1.tabBarItem = UITabBarItem(title: "Title", image: UIImage(named: "house"), tag: 1)

@@ -20,6 +20,11 @@ extension Files {
     @NSManaged public var preview: Data?
     @NSManaged public var created: Date?
     @NSManaged public var size: Int32
+    @NSManaged public var path: String?
+    @NSManaged public var url: URL?
+    @NSManaged public var publicUrl: String?
+    @NSManaged public var type: String?
+    @NSManaged public var id: String?
 
 }
 

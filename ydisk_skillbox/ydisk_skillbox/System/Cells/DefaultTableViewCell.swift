@@ -43,7 +43,7 @@ class DefaultTableViewCell: UITableViewCell {
         let date = model.created.toString(with: "dd.MM.yy")
         let time = model.created.toString(with: "hh:mm")
         let image = model.preview == Data() ? Constants.Images.File! : model.preview
-        filePreview.image = UIImage(data: image)
+        filePreview.image = UIImage(data: image!)
         fileName.text = model.name
         fileInfo.text = String(size) + " кб " + date + " " + time
     }
@@ -51,8 +51,8 @@ class DefaultTableViewCell: UITableViewCell {
     private func setupUI() {
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints({ make in
-            make.top.leading.equalTo(16)
-            make.bottom.trailing.equalTo(-16)
+            make.top.leading.equalTo(6)
+            make.bottom.trailing.equalTo(-6)
         })
         
         stackView.addSubviews([filePreview, fileName, fileInfo])

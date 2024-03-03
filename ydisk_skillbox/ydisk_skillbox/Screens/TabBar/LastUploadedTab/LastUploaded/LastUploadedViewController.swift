@@ -55,6 +55,13 @@ final class LastUploadedViewController: UITableViewController {
         cell?.configure(with: info)
         return cell ?? UITableViewCell()
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if presenter?.getInfo(for: indexPath).name.fileExtension() == "pdf" {
+            let model = presenter?.getInfo(for: indexPath)
+            self.navigationController?.pushViewController(LastUploadedPDFViewController(model), animated: true)
+        }
+    }
 }
 
 // MARK: View Protocol
