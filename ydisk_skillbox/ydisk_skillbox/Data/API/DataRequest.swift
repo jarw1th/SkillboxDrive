@@ -208,32 +208,33 @@ class DataRequest {
     private func checkingAllFilesCache(_ uploadedList: [UploadedFiles]) {
         // files - fetched objects for AllFiles entity; ids - array of ids; uploadedList = array of UploadedFiles objects
         var files = self.fetchedResultsControllerAll.fetchedObjects ?? []
-        var ids: [String] = []
-        uploadedList.forEach({ ids.append($0.id) })
+        var paths: [String] = []
+        uploadedList.forEach({ paths.append($0.path) })
         var uploadedList = uploadedList
         
         // Removing objects if they are already existed
         for el in files {
-            let id = el.id ?? String()
-            if ids.contains(id) {
+            let path = el.path ?? String()
+            if paths.contains(path) {
                 files.remove(at: files.firstIndex(of: el)!)
-                uploadedList.remove(at: ids.firstIndex(of: id)!)
-                ids.remove(at: ids.firstIndex(of: id)!)
+                uploadedList.remove(at: paths.firstIndex(of: path)!)
+                paths.remove(at: paths.firstIndex(of: path)!)
             }
         }
         
         // Removing objects from cache if they are not in the request
-        if ids.count < files.count {
-            for el in files {
-                persistentContainter.viewContext.delete(el)
-                try? persistentContainter.viewContext.save()
-            }
-        }
+//        if ids.count < files.count {
+//            for el in files {
+//                persistentContainter.viewContext.delete(el)
+//                try? persistentContainter.viewContext.save()
+//            }
+//        }
+        
         // End function if nothing to add to cache
-        if ids.isEmpty {return}
+        if paths.isEmpty {return}
         
         // Adding data to cache
-        for i in 0...ids.count-1 {
+        for i in 0...paths.count-1 {
             let file = AllFiles.init(entity: NSEntityDescription.entity(forEntityName: "AllFiles",
                                                                      in: self.persistentContainter.viewContext)!,
                                   insertInto: self.persistentContainter.viewContext)
@@ -370,34 +371,43 @@ class DataRequest {
     }
     
     // Give cache for all files
-    private func cacheAllFiles() -> [UploadedFiles] {
+    private func cacheAllFiles(path: String) -> [UploadedFiles] {
         // allFilesList - empty array; files - fetched objects for AllFiles entity
         var allFilesList: [UploadedFiles] = []
         let files = self.fetchedResultsControllerAll.fetchedObjects ?? []
+        var path = path
+        // Deleting last / symbol when it gets disk:/
+        if path.last == "/" {
+            path.removeLast()
+        }
         
         // Appending every object information into allFilesList array
         for file in files {
-            let name = file.name ?? String()
-            let preview = file.preview ?? Data()
-            let date = file.created ?? Date()
-            let size = Int(file.size)
-            let path = file.path ?? String()
-            let publicUrl = file.publicUrl ?? String()
-            let type = file.type ?? String()
-            let id = file.id ?? String()
-            let url = file.url
-            
-            let gotData = UploadedFiles(name: name,
-                                        preview: preview,
-                                        created: date,
-                                        size: size,
-                                        path: path,
-                                        publicUrl: publicUrl,
-                                        type: type,
-                                        id: id,
-                                        url: url)
-            
-            allFilesList.append(gotData)
+            let filePath = file.path?.components(separatedBy: "/" + (file.name ?? String())).first ?? String()
+            // Checking if path is right path
+            if path ==  filePath {
+                let name = file.name ?? String()
+                let preview = file.preview ?? Data()
+                let date = file.created ?? Date()
+                let size = Int(file.size)
+                let path = file.path ?? String()
+                let publicUrl = file.publicUrl ?? String()
+                let type = file.type ?? String()
+                let id = file.id ?? String()
+                let url = file.url
+                
+                let gotData = UploadedFiles(name: name,
+                                            preview: preview,
+                                            created: date,
+                                            size: size,
+                                            path: path,
+                                            publicUrl: publicUrl,
+                                            type: type,
+                                            id: id,
+                                            url: url)
+                
+                allFilesList.append(gotData)
+            }
         }
         
         return allFilesList
@@ -443,7 +453,7 @@ class DataRequest {
         let files = self.fetchedResultsControllerDisk.fetchedObjects
         
         // Checking if there is files array
-        guard let used = files else {
+        guard let _ = files else {
             return DiskInfo(usedSpace: 0, totalSpace: 0)
         }
         // Returning 0 index of files array
@@ -572,7 +582,7 @@ extension DataRequest: Requests {
         let reachability = Reachability()
         if !reachability.isConnectedToNetwork() {
             // Returning cached files if lost connection
-            completion(cacheAllFiles())
+            completion(cacheAllFiles(path: path))
             return
         }
         

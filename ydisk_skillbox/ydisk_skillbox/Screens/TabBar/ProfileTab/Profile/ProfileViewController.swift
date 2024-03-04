@@ -1,13 +1,13 @@
 import UIKit
 import SnapKit
-import Darwin
+import PieCharts
 
 final class ProfileViewController: UIViewController {
     // MARK: Variables
     private var presenter: ProfilePresenterProtocol?
     
     private let activityIndicator = SkillboxActivityIndicator(UIImage(data: Constants.Images.Loading!)!)
-    private let progressBar = UIProgressView()
+    private let chartView = PieChart()
     private let textSize = UILabel()
     private let textUsedSpace = UILabel()
     private let textFreeSpace = UILabel()
@@ -42,20 +42,20 @@ final class ProfileViewController: UIViewController {
         })
         activityIndicator.startAnimating()
         
-        view.addSubviews([textSize, progressBar, textUsedSpace, textFreeSpace, button])
-        textSize.snp.makeConstraints({ make in
-            make.width.equalTo(320)
+        view.addSubviews([chartView, textSize, textUsedSpace, textFreeSpace, button])
+        chartView.snp.makeConstraints({ make in
+            make.width.equalTo(200)
+            make.height.equalTo(200)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(24)
             make.centerX.equalToSuperview()
         })
-        progressBar.snp.makeConstraints({ make in
+        textSize.snp.makeConstraints({ make in
             make.width.equalTo(320)
-            make.height.equalTo(20)
-            make.top.equalTo(textSize.snp.bottom).inset(-16)
-            make.centerX.equalToSuperview()
+            make.centerY.equalTo(chartView.snp.centerY)
+            make.centerX.equalTo(chartView.snp.centerX)
         })
         textUsedSpace.snp.makeConstraints({ make in
-            make.top.equalTo(progressBar.snp.bottom).inset(-36)
+            make.top.equalTo(chartView.snp.bottom).inset(-36)
             make.leading.equalTo(36)
             make.trailing.equalTo(-36)
         })
@@ -73,10 +73,6 @@ final class ProfileViewController: UIViewController {
         
         textSize.textAlignment = .center
         textSize.font = Constants.Fonts.Header2
-        
-        progressBar.progressTintColor = Constants.Colors.Accent2
-        progressBar.trackTintColor = Constants.Colors.Icons
-        progressBar.progressViewStyle = .bar
         
         textUsedSpace.font = Constants.Fonts.MainBody
         textUsedSpace.textColor = Constants.Colors.Accent2
@@ -121,9 +117,12 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: ProfileViewProtocol {
     func loadUI() {
         textSize.text = "\(presenter?.getTotalSpace() ?? 0) гб"
-        progressBar.setProgress(presenter?.getProgress() ?? 0.0, animated: true)
-        textUsedSpace.text = "\(presenter?.getUsedSpace() ?? 0) гб - занято"
-        textFreeSpace.text = "\(presenter?.getFreeSpace() ?? 0) гб - свободно"
+        let used = presenter?.getUsedSpace() ?? 0
+        let free = presenter?.getFreeSpace() ?? 0
+        chartView.models = [PieSliceModel(value: Double(used), color: Constants.Colors.Accent2!),
+                            PieSliceModel(value: Double(free), color: Constants.Colors.Icons!)]
+        textUsedSpace.text = "\(used) гб - занято"
+        textFreeSpace.text = "\(free) гб - свободно"
         
         view.layoutIfNeeded()
     }

@@ -63,10 +63,10 @@ final class LastUploadedViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let fileExtension = presenter?.getInfo(for: indexPath).name.fileExtension()
-        let reason1 = fileExtension == "pdf"
-        let reason2 = (fileExtension == "jpeg" || fileExtension == "jpg" || fileExtension == "png")
-        let reason3 = (fileExtension == "doc" || fileExtension == "docx" || fileExtension == "rtf" || fileExtension == "xls" || fileExtension == "xlsx" || fileExtension == "ppt" || fileExtension == "pptx" || fileExtension == "txt")
+        let fileExtension = presenter?.getInfo(for: indexPath).name.fileExtension() ?? String()
+        let reason1 = Constants.Texts.pdfExtensions.contains(fileExtension)
+        let reason2 = Constants.Texts.imageExtensions.contains(fileExtension)
+        let reason3 = Constants.Texts.msofficeExtensions.contains(fileExtension)
         if reason1 {
             let model = presenter?.getInfo(for: indexPath)
             self.navigationController?.pushViewController(PDFViewController(model), animated: true)

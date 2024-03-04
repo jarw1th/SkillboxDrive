@@ -82,7 +82,7 @@ enum Constants {
         
         static let pdfExtensions = ["PDF", "pdf"]
         
-        static let mcofficeExtensions = ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT"]
+        static let msofficeExtensions = ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT"]
         
         static let fileExtensions = ["jpg", "jpeg", "png", "JPG", "JPEG", "PNG", "PDF", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT"]
     }

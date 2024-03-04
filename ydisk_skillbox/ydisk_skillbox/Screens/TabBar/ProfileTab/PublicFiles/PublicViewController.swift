@@ -46,6 +46,27 @@ final class PublicViewController: UITableViewController {
         presenter?.loadLastUploaded()   
     }
     
+    private func deleteAction(indexPath: IndexPath) {
+        let alert = UIAlertController(title: presenter?.getFileName(for: indexPath), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Удалить публикацию", style: .destructive, handler: { _ in
+            self.deleteAlert(indexPath: indexPath)
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        
+        present(alert, animated: true)
+    }
+    
+    private func deleteAlert(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Удаление", message: "Вы уверены, что хотите удалить публикацию?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { _ in
+            self.activityIndicator.startAnimating()
+            self.presenter?.removePublic(for: indexPath)
+        }))
+        alert.addAction(UIAlertAction(title: "Нет", style: .destructive))
+        
+        present(alert, animated: true)
+    }
+    
     // MARK: TableView
     override func numberOfSections(in tableView: UITableView) -> Int {
         return presenter?.numberOfSections() ?? 0
@@ -72,25 +93,21 @@ final class PublicViewController: UITableViewController {
         }
     }
     
-    private func deleteAction(indexPath: IndexPath) {
-        let alert = UIAlertController(title: presenter?.getFileName(for: indexPath), message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Удалить публикацию", style: .destructive, handler: { _ in
-            self.deleteAlert(indexPath: indexPath)
-        }))
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
-        
-        present(alert, animated: true)
-    }
-    
-    private func deleteAlert(indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Удаление", message: "Вы уверены, что хотите удалить публикацию?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { _ in
-            self.activityIndicator.startAnimating()
-            self.presenter?.removePublic(for: indexPath)
-        }))
-        alert.addAction(UIAlertAction(title: "Нет", style: .destructive))
-        
-        present(alert, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let fileExtension = presenter?.getInfo(for: indexPath).name.fileExtension() ?? String()
+        let reason1 = Constants.Texts.pdfExtensions.contains(fileExtension)
+        let reason2 = Constants.Texts.imageExtensions.contains(fileExtension)
+        let reason3 = Constants.Texts.msofficeExtensions.contains(fileExtension)
+        if reason1 {
+            let model = presenter?.getInfo(for: indexPath)
+            self.navigationController?.pushViewController(PDFViewController(model), animated: true)
+        } else if reason2 {
+            let model = presenter?.getInfo(for: indexPath)
+            self.navigationController?.pushViewController(ImageViewController(model), animated: true)
+        } else if reason3 {
+            let model = presenter?.getInfo(for: indexPath)
+            self.navigationController?.pushViewController(WebViewController(model), animated: true)
+        }
     }
 }
 

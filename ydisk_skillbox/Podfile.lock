@@ -1,20 +1,24 @@
 PODS:
-  - Alamofire (5.8.1)
-  - SnapKit (5.6.0)
+  - Alamofire (5.9.0)
+  - PieCharts (0.0.7)
+  - SnapKit (5.7.1)
 
 DEPENDENCIES:
   - Alamofire
+  - PieCharts
   - SnapKit
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - PieCharts
     - SnapKit
 
 SPEC CHECKSUMS:
-  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  Alamofire: 02b772c9910e8eba1a079227c32fbd9e46c90a24
+  PieCharts: 30e50dfa7dc19e5b84e9878d32089673ef5d0453
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: d74409aea06e2340b95e07a98eb75e2171a0d5b0
+PODFILE CHECKSUM: 63c96b5d769b0c9e8644ec2367ec2a2e7a9d29ea
 
 COCOAPODS: 1.15.2
