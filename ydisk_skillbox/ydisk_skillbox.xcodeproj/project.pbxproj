@@ -65,6 +65,7 @@
 		21F437B22B95B992004408EF /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437B12B95B992004408EF /* PublicViewController.swift */; };
 		21F437B52B95C298004408EF /* Public+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437B32B95C298004408EF /* Public+CoreDataClass.swift */; };
 		21F437B62B95C298004408EF /* Public+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437B42B95C298004408EF /* Public+CoreDataProperties.swift */; };
+		21F437BA2B9645EB004408EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21F437BC2B9645EB004408EF /* Localizable.strings */; };
 		B0F3A80AA9FF3360DFCB3B6A /* Pods_ydisk_skillbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5EAED44B267E0B6F3610CC /* Pods_ydisk_skillbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +131,8 @@
 		21F437B12B95B992004408EF /* PublicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
 		21F437B32B95C298004408EF /* Public+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Public+CoreDataClass.swift"; sourceTree = "<group>"; };
 		21F437B42B95C298004408EF /* Public+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Public+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		21F437BB2B9645EB004408EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		21F437BD2B9645EC004408EF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9E7C619F95D714C947495E95 /* Pods-ydisk_skillbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ydisk_skillbox.debug.xcconfig"; path = "Target Support Files/Pods-ydisk_skillbox/Pods-ydisk_skillbox.debug.xcconfig"; sourceTree = "<group>"; };
 		F7962FAF956CBDCE7B8B888F /* Pods-ydisk_skillbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ydisk_skillbox.release.xcconfig"; path = "Target Support Files/Pods-ydisk_skillbox/Pods-ydisk_skillbox.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -318,6 +321,7 @@
 				21F4374C2B91ECB3004408EF /* Cells */,
 				21365E492B8F0656006CDC17 /* Constants.swift */,
 				21F437202B90C894004408EF /* SkillboxActivityIndicator.swift */,
+				21F437BC2B9645EB004408EF /* Localizable.strings */,
 				21F4376D2B925188004408EF /* Reachability.swift */,
 				21F437692B9244C8004408EF /* AppConfig.swift */,
 				21365E542B8F1FF6006CDC17 /* UIKitExtensions.swift */,
@@ -475,6 +479,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 21365E292B8F02B3006CDC17;
 			productRefGroup = 21365E332B8F02B3006CDC17 /* Products */;
@@ -492,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F437612B9212C9004408EF /* Model.xcdatamodeld in Resources */,
+				21F437BA2B9645EB004408EF /* Localizable.strings in Resources */,
 				21F4371F2B906AD5004408EF /* Launch Screen.storyboard in Resources */,
 				21365E3F2B8F02B6006CDC17 /* Assets.xcassets in Resources */,
 			);
@@ -605,6 +611,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		21F437BC2B9645EB004408EF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21F437BB2B9645EB004408EF /* en */,
+				21F437BD2B9645EC004408EF /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		21365E442B8F02B6006CDC17 /* Debug */ = {

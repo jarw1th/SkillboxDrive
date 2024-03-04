@@ -34,7 +34,7 @@ final class ProfileViewController: UIViewController {
         title = presenter?.getTitle()
         self.tabBarController?.tabBar.isHidden = false
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Выйти", style: .plain, target: self, action: #selector(deleteAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.Texts.exitButton, style: .plain, target: self, action: #selector(deleteAction))
         
         view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints({ make in
@@ -89,21 +89,21 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func deleteAction() {
-        let alert = UIAlertController(title: "Профиль", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Выйти", style: .destructive, handler: { _ in
+        let alert = UIAlertController(title: Constants.Texts.titleProfileScreen, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: Constants.Texts.exitButton, style: .destructive, handler: { _ in
             self.deleteAlert()
         }))
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: Constants.Texts.cancelButton, style: .cancel))
         
         present(alert, animated: true)
     }
     
     private func deleteAlert() {
-        let alert = UIAlertController(title: "Выход", message: "Вы уверены, что хотите выйти?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { _ in
+        let alert = UIAlertController(title: Constants.Texts.exitButton, message: Constants.Texts.exitSubText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Constants.Texts.yesButton, style: .default, handler: { _ in
             self.presenter?.deleteProfile()
         }))
-        alert.addAction(UIAlertAction(title: "Нет", style: .destructive))
+        alert.addAction(UIAlertAction(title: Constants.Texts.noButton, style: .destructive))
         
         present(alert, animated: true)
     }
@@ -121,8 +121,8 @@ extension ProfileViewController: ProfileViewProtocol {
         let free = presenter?.getFreeSpace() ?? 0
         chartView.models = [PieSliceModel(value: Double(used), color: Constants.Colors.Accent2!),
                             PieSliceModel(value: Double(free), color: Constants.Colors.Icons!)]
-        textUsedSpace.text = "\(used) гб - занято"
-        textFreeSpace.text = "\(free) гб - свободно"
+        textUsedSpace.text = "\(used) гб - \(Constants.Texts.usedSpace)"
+        textFreeSpace.text = "\(free) гб - \(Constants.Texts.freeSpace)"
         
         view.layoutIfNeeded()
     }

@@ -28,7 +28,7 @@ final class RenameViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = Constants.Colors.White
         title = presenter?.getTitle()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.Texts.doneButton, style: .plain, target: self, action: #selector(doneButton))
         
         view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints({ make in

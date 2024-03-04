@@ -1,0 +1,57 @@
+"FirstOnboardingHeader2Text" = "All of your \nfiles at one place";
+
+"SecondOnboardingHeader2Text" = "Use files \nwithout internet connection";
+
+"ThirdOnboardingHeader2Text" = "Share your \nfiles with others";
+
+"ButtonText" = "Continue";
+
+"LoginButtonText" = "Log in";
+
+"PublichButtonText" = "Published files";
+
+"titleProfileScreen" = "Profile";
+
+"titleLastUploadedScreen" = "Latest";
+
+"titleAllFilesScreen" = "All files";
+
+"titlePublicScreen" = "Published files";
+
+"titleRename" = "Renaming";
+
+"titlePDF" = "PDF";
+
+"titleImage" = "Image";
+
+"titleWeb" = "File";
+
+"usedSpace" = "used";
+
+"freeSpace" = "free";
+
+"exitButton" = "Exit";
+
+"cancelButton" = "Cancel";
+
+"yesButton" = "Yes";
+
+"noButton" = "No";
+
+"exitText" = "Exit";
+
+"exitSubText" = "Are you sure that you want to exit?";
+
+"shareText" = "Sharing";
+
+"linkButton" = "File";
+
+"fileButton" = "Link";
+
+"editButton" = "Edit";
+
+"doneButton" = "Done";
+
+"deleteText" = "This file will be deleted";
+
+"deleteButton" = "Delete";

@@ -11,7 +11,7 @@ protocol AllFilesPresenterProtocol: AnyObject {
     
     func numberOfRowsInSection() -> Int
     
-    func loadLastUploaded()
+    func loadAllFiles()
 }
 
 protocol AllFilesViewProtocol: AnyObject {
@@ -65,7 +65,7 @@ class AllFilesPresenter: AllFilesPresenterProtocol {
         return model.filesList.count
     }
     
-    func loadLastUploaded() {
+    func loadAllFiles() {
         dataRequest.requestAllFiles(path: self.path ?? String(), completion: { dataList in
             self.model.loadFiles(dataList)
             DispatchQueue.main.async {

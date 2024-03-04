@@ -1,0 +1,58 @@
+"FirstOnboardingHeader2Text" = "Теперь все ваши \nдокументы в одном месте";
+
+"SecondOnboardingHeader2Text" = "Доступ к файлам без \nинтернета";
+
+"ThirdOnboardingHeader2Text" = "Делитесь вашими файлами \nс другими";
+
+"ButtonText" = "Далее";
+
+"LoginButtonText" = "Войти";
+
+"PublichButtonText" = "Опубликованные файлы";
+
+"titleProfileScreen" = "Профиль";
+
+"titleLastUploadedScreen" = "Последние";
+
+"titleAllFilesScreen" = "Все файлы";
+
+"titlePublicScreen" = "Опубликованные файлы";
+
+"titleRename" = "Переименовать";
+
+"titlePDF" = "PDF";
+
+"titleImage" = "Изображение";
+
+"titleWeb" = "Файл";
+
+"usedSpace" = "занято";
+
+"freeSpace" = "свободно";
+
+"exitButton" = "Выйти";
+
+"cancelButton" = "Отмена";
+
+"yesButton" = "Да";
+
+"noButton" = "Нет";
+
+"exitText" = "Выход";
+
+"exitSubText" = "Вы уверены, что хотите выйти?";
+
+"shareText" = "Поделиться";
+
+"linkButton" = "Файл";
+
+"fileButton" = "Ссылка";
+
+"editButton" = "Изменить";
+
+"doneButton" = "Готово";
+
+"deleteText" = "Этот файл будет удален";
+
+"deleteButton" = "Удалить";
+

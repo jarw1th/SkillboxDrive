@@ -27,7 +27,7 @@ final class WebViewController: UIViewController {
     // MARK: Functions
     private func setupUI() {
         view.backgroundColor = Constants.Colors.Black
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButton))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.Texts.editButton, style: .plain, target: self, action: #selector(editButton))
         self.navigationItem.setTitle(title: (presenter?.getTitle())!, subtitle: (presenter?.getSubtitle())!)
         self.tabBarController?.tabBar.isHidden = true
         
@@ -65,18 +65,18 @@ final class WebViewController: UIViewController {
     }
     
     @objc private func deleteButtonAction() {
-        let alert = UIAlertController(title: "Данный файл будет удален", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
+        let alert = UIAlertController(title: Constants.Texts.deleteText, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: Constants.Texts.deleteButton, style: .destructive, handler: { _ in
             self.presenter?.deleteFile()
         }))
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: Constants.Texts.cancelButton, style: .cancel))
         
         present(alert, animated: true)
     }
     
     @objc private func shareButtonAction() {
-        let alert = UIAlertController(title: "Поделиться", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Файлом", style: .default, handler: { _ in
+        let alert = UIAlertController(title: Constants.Texts.shareText, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: Constants.Texts.fileButton, style: .default, handler: { _ in
             guard let url = self.presenter?.getUrl() else {return}
             
             let urlItem: URL = url
@@ -88,7 +88,7 @@ final class WebViewController: UIViewController {
             
             self.present(activityViewController, animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Ссылкой", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: Constants.Texts.linkButton, style: .default, handler: { _ in
             guard let url = NSURL(string: (self.presenter?.getPublicUrl())!) else {return}
             
             let urlItem: NSURL = url
@@ -100,7 +100,7 @@ final class WebViewController: UIViewController {
             
             self.present(activityViewController, animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        alert.addAction(UIAlertAction(title: Constants.Texts.cancelButton, style: .cancel))
         
         present(alert, animated: true)
     }

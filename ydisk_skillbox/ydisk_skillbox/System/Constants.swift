@@ -50,33 +50,63 @@ enum Constants {
     
     // MARK: Texts
     enum Texts {
-        static let FirstOnboardingHeader2Text = "Теперь все ваши \nдокументы в одном месте"
+        static let FirstOnboardingHeader2Text = NSLocalizedString("FirstOnboardingHeader2Text", comment: "")
         
-        static let SecondOnboardingHeader2Text = "Доступ к файлам без интернета"
+        static let SecondOnboardingHeader2Text = NSLocalizedString("SecondOnboardingHeader2Text", comment: "")
         
-        static let ThirdOnboardingHeader2Text = "Делитесь вашими файлами с другими"
+        static let ThirdOnboardingHeader2Text = NSLocalizedString("ThirdOnboardingHeader2Text", comment: "")
         
-        static let ButtonText = "Далее"
+        static let ButtonText = NSLocalizedString("ButtonText", comment: "")
         
-        static let LoginButtonText = "Войти"
+        static let LoginButtonText = NSLocalizedString("LoginButtonText", comment: "")
         
-        static let PublichButtonText = "Опубликованные файлы"
+        static let PublichButtonText = NSLocalizedString("PublichButtonText", comment: "")
         
-        static let titleProfileScreen = "Профиль"
+        static let titleProfileScreen = NSLocalizedString("titleProfileScreen", comment: "")
         
-        static let titleLastUploadedScreen = "Последние"
+        static let titleLastUploadedScreen = NSLocalizedString("titleLastUploadedScreen", comment: "")
         
-        static let titleAllFilesScreen = "Все файлы"
+        static let titleAllFilesScreen = NSLocalizedString("titleAllFilesScreen", comment: "")
         
-        static let titlePublicScreen = "Опубликованные файлы"
+        static let titlePublicScreen = NSLocalizedString("titlePublicScreen", comment: "")
         
-        static let titleRename = "Переименовать"
+        static let titleRename = NSLocalizedString("titleRename", comment: "")
         
-        static let titlePDF = "PDF"
+        static let titlePDF = NSLocalizedString("titlePDF", comment: "")
         
-        static let titleImage = "Изображение"
+        static let titleImage = NSLocalizedString("titleImage", comment: "")
         
-        static let titleWeb = "Файл"
+        static let titleWeb = NSLocalizedString("titleWeb", comment: "")
+        
+        static let usedSpace = NSLocalizedString("usedSpace", comment: "")
+        
+        static let freeSpace = NSLocalizedString("freeSpace", comment: "")
+        
+        static let exitButton = NSLocalizedString("exitButton", comment: "")
+        
+        static let cancelButton = NSLocalizedString("cancelButton", comment: "")
+        
+        static let yesButton = NSLocalizedString("yesButton", comment: "")
+        
+        static let noButton = NSLocalizedString("noButton", comment: "")
+        
+        static let exitText = NSLocalizedString("exitText", comment: "")
+        
+        static let exitSubText = NSLocalizedString("exitSubText", comment: "")
+        
+        static let shareText = NSLocalizedString("shareText", comment: "")
+        
+        static let linkButton = NSLocalizedString("linkButton", comment: "")
+        
+        static let fileButton = NSLocalizedString("fileButton", comment: "")
+        
+        static let editButton = NSLocalizedString("editButton", comment: "")
+        
+        static let doneButton = NSLocalizedString("doneButton", comment: "")
+        
+        static let deleteText = NSLocalizedString("deleteText", comment: "")
+        
+        static let deleteButton = NSLocalizedString("deleteButton", comment: "")
         
         static let imageExtensions = ["jpg", "jpeg", "png", "JPG", "JPEG", "PNG"]
         

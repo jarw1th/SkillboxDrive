@@ -49,7 +49,7 @@ final class AllFilesViewController: UITableViewController {
     }
     
     @objc private func refresher() {
-        presenter?.loadLastUploaded()
+        presenter?.loadAllFiles()
     }
     
     // MARK: TableView
