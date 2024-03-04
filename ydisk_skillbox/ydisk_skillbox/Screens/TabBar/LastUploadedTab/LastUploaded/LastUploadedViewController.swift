@@ -19,10 +19,16 @@ final class LastUploadedViewController: UITableViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: Functions
     private func setupUI() {
         view.backgroundColor = Constants.Colors.White
         title = presenter?.getTitle()
+        self.tabBarController?.tabBar.isHidden = false
         
         tableView.separatorStyle = .none
         
@@ -57,9 +63,19 @@ final class LastUploadedViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if presenter?.getInfo(for: indexPath).name.fileExtension() == "pdf" {
+        let fileExtension = presenter?.getInfo(for: indexPath).name.fileExtension()
+        let reason1 = fileExtension == "pdf"
+        let reason2 = (fileExtension == "jpeg" || fileExtension == "jpg" || fileExtension == "png")
+        let reason3 = (fileExtension == "doc" || fileExtension == "docx" || fileExtension == "rtf" || fileExtension == "xls" || fileExtension == "xlsx" || fileExtension == "ppt" || fileExtension == "pptx" || fileExtension == "txt")
+        if reason1 {
             let model = presenter?.getInfo(for: indexPath)
-            self.navigationController?.pushViewController(LastUploadedPDFViewController(model), animated: true)
+            self.navigationController?.pushViewController(PDFViewController(model), animated: true)
+        } else if reason2 {
+            let model = presenter?.getInfo(for: indexPath)
+            self.navigationController?.pushViewController(ImageViewController(model), animated: true)
+        } else if reason3 {
+            let model = presenter?.getInfo(for: indexPath)
+            self.navigationController?.pushViewController(WebViewController(model), animated: true)
         }
     }
 }

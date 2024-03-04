@@ -9,6 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    let appConfig: AppConfig = AppConfig()
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -16,7 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let vc = UINavigationController(rootViewController: FirstOnboardingViewController())
         let tabBar = TabBarController()
-        let appConfig: AppConfig = AppConfig()
         
         let root = appConfig.getAuthorizationStatus() ? tabBar : vc
         

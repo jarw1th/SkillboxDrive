@@ -1,24 +1,18 @@
 import UIKit
 import SnapKit
 
-final class AllFilesViewController: UITableViewController {
+final class PublicViewController: UITableViewController {
     // MARK: Variables
-    private var presenter: AllFilesPresenterProtocol?
-    private var path: String?
+    private var presenter: PublicPresenterProtocol?
     
     private let activityIndicator = SkillboxActivityIndicator(UIImage(data: Constants.Images.Loading!)!)
     private let tableRefreshControl = UIRefreshControl()
-    
-    convenience init(path: String) {
-        self.init(nibName: nil, bundle: nil)
-        self.path = path
-    }
     
     // MARK: Body
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter = AllFilesPresenter(path: path ?? String())
+        presenter = PublicPresenter()
         presenter?.setView(self)
         tableView.register(DefaultTableViewCell.self, forCellReuseIdentifier: "DefaultTableViewCell")
         
@@ -49,7 +43,7 @@ final class AllFilesViewController: UITableViewController {
     }
     
     @objc private func refresher() {
-        presenter?.loadLastUploaded()
+        presenter?.loadLastUploaded()   
     }
     
     // MARK: TableView
@@ -68,30 +62,40 @@ final class AllFilesViewController: UITableViewController {
         return cell ?? UITableViewCell()
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let fileExtension = presenter?.getInfo(for: indexPath).name.fileExtension()
-        let reason1 = fileExtension == "pdf"
-        let reason2 = (fileExtension == "jpeg" || fileExtension == "jpg" || fileExtension == "png")
-        let reason3 = (fileExtension == "doc" || fileExtension == "docx" || fileExtension == "rtf" || fileExtension == "xls" || fileExtension == "xlsx" || fileExtension == "ppt" || fileExtension == "pptx" || fileExtension == "txt")
-        let reason4 = presenter?.getInfo(for: indexPath).type == "dir"
-        if reason1 {
-            let model = presenter?.getInfo(for: indexPath)
-            self.navigationController?.pushViewController(PDFViewController(model), animated: true)
-        } else if reason2 {
-            let model = presenter?.getInfo(for: indexPath)
-            self.navigationController?.pushViewController(ImageViewController(model), animated: true)
-        } else if reason3 {
-            let model = presenter?.getInfo(for: indexPath)
-            self.navigationController?.pushViewController(WebViewController(model), animated: true)
-        } else if reason4 {
-            let model = presenter?.getInfo(for: indexPath)
-            self.navigationController?.pushViewController(AllFilesViewController(path: model?.path ?? String()), animated: true)
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteAction(indexPath: indexPath)
         }
+    }
+    
+    private func deleteAction(indexPath: IndexPath) {
+        let alert = UIAlertController(title: presenter?.getFileName(for: indexPath), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Удалить публикацию", style: .destructive, handler: { _ in
+            self.deleteAlert(indexPath: indexPath)
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
+        
+        present(alert, animated: true)
+    }
+    
+    private func deleteAlert(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Удаление", message: "Вы уверены, что хотите удалить публикацию?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { _ in
+            self.activityIndicator.startAnimating()
+            self.presenter?.removePublic(for: indexPath)
+        }))
+        alert.addAction(UIAlertAction(title: "Нет", style: .destructive))
+        
+        present(alert, animated: true)
     }
 }
 
 // MARK: View Protocol
-extension AllFilesViewController: AllFilesViewProtocol {
+extension PublicViewController: PublicViewProtocol {
     func tableViewUpdate() {
         tableView.reloadData()
     }

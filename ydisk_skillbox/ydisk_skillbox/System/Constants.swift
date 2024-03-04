@@ -56,11 +56,23 @@ enum Constants {
         
         static let LoginButtonText = "Войти"
         
+        static let PublichButtonText = "Опубликованные файлы"
+        
+        static let titleProfileScreen = "Профиль"
+        
         static let titleLastUploadedScreen = "Последние"
         
-        static let titlePDF = "PDF файл"
+        static let titleAllFilesScreen = "Все файлы"
+        
+        static let titlePublicScreen = "Опубликованные файлы"
         
         static let titleRename = "Переименовать"
+        
+        static let titlePDF = "PDF"
+        
+        static let titleImage = "Изображение"
+        
+        static let titleWeb = "Файл"
     }
     
     enum Images {

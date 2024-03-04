@@ -11,8 +11,11 @@ class AppConfig {
     }
     
     func setAuthorizationStatus(_ isAuthorized: Bool) {
-        defaults.set(false, forKey: "isAuthorized")
-        print(getAuthorizationStatus())
-        defaults.set(isAuthorized, forKey: "isAuthorized")
+        defaults.setValue(false, forKey: "isAuthorized")
+        defaults.setValue(isAuthorized, forKey: "isAuthorized")
+    }
+    
+    func synchronize() {
+        defaults.synchronize()
     }
 }

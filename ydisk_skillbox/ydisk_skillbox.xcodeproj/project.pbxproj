@@ -39,14 +39,32 @@
 		21F437782B925E8D004408EF /* SecondOnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437752B925E8D004408EF /* SecondOnboardingPresenter.swift */; };
 		21F437792B925E8D004408EF /* SecondOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437762B925E8D004408EF /* SecondOnboardingViewController.swift */; };
 		21F4377A2B925E8D004408EF /* SecondOnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437772B925E8D004408EF /* SecondOnboardingModel.swift */; };
-		21F4377D2B92631B004408EF /* LastUploadedPDFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4377C2B92631B004408EF /* LastUploadedPDFModel.swift */; };
-		21F4377F2B926325004408EF /* LastUploadedPDFPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4377E2B926325004408EF /* LastUploadedPDFPresenter.swift */; };
-		21F437812B92632E004408EF /* LastUploadedPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437802B92632E004408EF /* LastUploadedPDFViewController.swift */; };
+		21F4377D2B92631B004408EF /* PDFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4377C2B92631B004408EF /* PDFModel.swift */; };
+		21F4377F2B926325004408EF /* PDFPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4377E2B926325004408EF /* PDFPresenter.swift */; };
+		21F437812B92632E004408EF /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437802B92632E004408EF /* PDFViewController.swift */; };
 		21F437852B93B1CA004408EF /* AllFiles+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437832B93B1CA004408EF /* AllFiles+CoreDataClass.swift */; };
 		21F437862B93B1CA004408EF /* AllFiles+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437842B93B1CA004408EF /* AllFiles+CoreDataProperties.swift */; };
 		21F437892B94921C004408EF /* RenameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437882B94921C004408EF /* RenameModel.swift */; };
 		21F4378B2B949227004408EF /* RenamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4378A2B949227004408EF /* RenamePresenter.swift */; };
 		21F4378D2B949233004408EF /* RenameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4378C2B949233004408EF /* RenameViewController.swift */; };
+		21F437902B94AA73004408EF /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4378F2B94AA73004408EF /* ImageModel.swift */; };
+		21F437922B94AA7B004408EF /* ImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437912B94AA7B004408EF /* ImagePresenter.swift */; };
+		21F437942B94AA89004408EF /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437932B94AA89004408EF /* ImageViewController.swift */; };
+		21F437982B94EAFF004408EF /* WebModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437972B94EAFF004408EF /* WebModel.swift */; };
+		21F4379A2B94EB06004408EF /* WebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437992B94EB06004408EF /* WebPresenter.swift */; };
+		21F4379C2B94EB0D004408EF /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4379B2B94EB0D004408EF /* WebViewController.swift */; };
+		21F4379E2B94EE48004408EF /* AllFilesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4379D2B94EE48004408EF /* AllFilesModel.swift */; };
+		21F437A02B94EE4F004408EF /* AllFilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F4379F2B94EE4F004408EF /* AllFilesPresenter.swift */; };
+		21F437A32B9505EF004408EF /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437A22B9505EF004408EF /* ProfileModel.swift */; };
+		21F437A52B9505F8004408EF /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437A42B9505F8004408EF /* ProfilePresenter.swift */; };
+		21F437A72B95060A004408EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437A62B95060A004408EF /* ProfileViewController.swift */; };
+		21F437AA2B950F27004408EF /* Disk+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437A82B950F27004408EF /* Disk+CoreDataClass.swift */; };
+		21F437AB2B950F27004408EF /* Disk+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437A92B950F27004408EF /* Disk+CoreDataProperties.swift */; };
+		21F437AE2B95B97E004408EF /* PublicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437AD2B95B97E004408EF /* PublicModel.swift */; };
+		21F437B02B95B98A004408EF /* PublicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437AF2B95B98A004408EF /* PublicPresenter.swift */; };
+		21F437B22B95B992004408EF /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437B12B95B992004408EF /* PublicViewController.swift */; };
+		21F437B52B95C298004408EF /* Public+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437B32B95C298004408EF /* Public+CoreDataClass.swift */; };
+		21F437B62B95C298004408EF /* Public+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437B42B95C298004408EF /* Public+CoreDataProperties.swift */; };
 		B0F3A80AA9FF3360DFCB3B6A /* Pods_ydisk_skillbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5EAED44B267E0B6F3610CC /* Pods_ydisk_skillbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,14 +104,32 @@
 		21F437752B925E8D004408EF /* SecondOnboardingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondOnboardingPresenter.swift; sourceTree = "<group>"; };
 		21F437762B925E8D004408EF /* SecondOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondOnboardingViewController.swift; sourceTree = "<group>"; };
 		21F437772B925E8D004408EF /* SecondOnboardingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondOnboardingModel.swift; sourceTree = "<group>"; };
-		21F4377C2B92631B004408EF /* LastUploadedPDFModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUploadedPDFModel.swift; sourceTree = "<group>"; };
-		21F4377E2B926325004408EF /* LastUploadedPDFPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUploadedPDFPresenter.swift; sourceTree = "<group>"; };
-		21F437802B92632E004408EF /* LastUploadedPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUploadedPDFViewController.swift; sourceTree = "<group>"; };
+		21F4377C2B92631B004408EF /* PDFModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFModel.swift; sourceTree = "<group>"; };
+		21F4377E2B926325004408EF /* PDFPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPresenter.swift; sourceTree = "<group>"; };
+		21F437802B92632E004408EF /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		21F437832B93B1CA004408EF /* AllFiles+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllFiles+CoreDataClass.swift"; sourceTree = "<group>"; };
 		21F437842B93B1CA004408EF /* AllFiles+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllFiles+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21F437882B94921C004408EF /* RenameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenameModel.swift; sourceTree = "<group>"; };
 		21F4378A2B949227004408EF /* RenamePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenamePresenter.swift; sourceTree = "<group>"; };
 		21F4378C2B949233004408EF /* RenameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenameViewController.swift; sourceTree = "<group>"; };
+		21F4378F2B94AA73004408EF /* ImageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		21F437912B94AA7B004408EF /* ImagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePresenter.swift; sourceTree = "<group>"; };
+		21F437932B94AA89004408EF /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		21F437972B94EAFF004408EF /* WebModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebModel.swift; sourceTree = "<group>"; };
+		21F437992B94EB06004408EF /* WebPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPresenter.swift; sourceTree = "<group>"; };
+		21F4379B2B94EB0D004408EF /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		21F4379D2B94EE48004408EF /* AllFilesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllFilesModel.swift; sourceTree = "<group>"; };
+		21F4379F2B94EE4F004408EF /* AllFilesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllFilesPresenter.swift; sourceTree = "<group>"; };
+		21F437A22B9505EF004408EF /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		21F437A42B9505F8004408EF /* ProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		21F437A62B95060A004408EF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		21F437A82B950F27004408EF /* Disk+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disk+CoreDataClass.swift"; sourceTree = "<group>"; };
+		21F437A92B950F27004408EF /* Disk+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disk+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		21F437AD2B95B97E004408EF /* PublicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicModel.swift; sourceTree = "<group>"; };
+		21F437AF2B95B98A004408EF /* PublicPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicPresenter.swift; sourceTree = "<group>"; };
+		21F437B12B95B992004408EF /* PublicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
+		21F437B32B95C298004408EF /* Public+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Public+CoreDataClass.swift"; sourceTree = "<group>"; };
+		21F437B42B95C298004408EF /* Public+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Public+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9E7C619F95D714C947495E95 /* Pods-ydisk_skillbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ydisk_skillbox.debug.xcconfig"; path = "Target Support Files/Pods-ydisk_skillbox/Pods-ydisk_skillbox.debug.xcconfig"; sourceTree = "<group>"; };
 		F7962FAF956CBDCE7B8B888F /* Pods-ydisk_skillbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ydisk_skillbox.release.xcconfig"; path = "Target Support Files/Pods-ydisk_skillbox/Pods-ydisk_skillbox.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,9 +256,13 @@
 		21F437602B9212AE004408EF /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				21F437A82B950F27004408EF /* Disk+CoreDataClass.swift */,
+				21F437A92B950F27004408EF /* Disk+CoreDataProperties.swift */,
 				21F437832B93B1CA004408EF /* AllFiles+CoreDataClass.swift */,
 				21F437842B93B1CA004408EF /* AllFiles+CoreDataProperties.swift */,
 				21F437572B920B25004408EF /* Model.xcdatamodeld */,
+				21F437B32B95C298004408EF /* Public+CoreDataClass.swift */,
+				21F437B42B95C298004408EF /* Public+CoreDataProperties.swift */,
 				21F4375B2B920B83004408EF /* Files+CoreDataClass.swift */,
 				21F4375C2B920B83004408EF /* Files+CoreDataProperties.swift */,
 			);
@@ -232,6 +272,8 @@
 		21F437622B9234BF004408EF /* AllFiles */ = {
 			isa = PBXGroup;
 			children = (
+				21F4379D2B94EE48004408EF /* AllFilesModel.swift */,
+				21F4379F2B94EE4F004408EF /* AllFilesPresenter.swift */,
 				21F437632B9234D7004408EF /* AllFilesViewController.swift */,
 			);
 			path = AllFiles;
@@ -262,6 +304,9 @@
 			isa = PBXGroup;
 			children = (
 				21F4376B2B924A10004408EF /* TabBarController.swift */,
+				21F437AC2B95B95C004408EF /* PublicFiles */,
+				21F437A12B9505C5004408EF /* Profile */,
+				21F437952B94EAAD004408EF /* General */,
 				21F437822B9378AC004408EF /* LastUploadedTab */,
 				21F437622B9234BF004408EF /* AllFiles */,
 			);
@@ -290,21 +335,19 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		21F4377B2B9262FD004408EF /* LastUploadedPDF */ = {
+		21F4377B2B9262FD004408EF /* PDF */ = {
 			isa = PBXGroup;
 			children = (
-				21F4377C2B92631B004408EF /* LastUploadedPDFModel.swift */,
-				21F4377E2B926325004408EF /* LastUploadedPDFPresenter.swift */,
-				21F437802B92632E004408EF /* LastUploadedPDFViewController.swift */,
+				21F4377C2B92631B004408EF /* PDFModel.swift */,
+				21F4377E2B926325004408EF /* PDFPresenter.swift */,
+				21F437802B92632E004408EF /* PDFViewController.swift */,
 			);
-			path = LastUploadedPDF;
+			path = PDF;
 			sourceTree = "<group>";
 		};
 		21F437822B9378AC004408EF /* LastUploadedTab */ = {
 			isa = PBXGroup;
 			children = (
-				21F437872B9491F3004408EF /* Rename */,
-				21F4377B2B9262FD004408EF /* LastUploadedPDF */,
 				21F437452B91E0E7004408EF /* LastUploaded */,
 			);
 			path = LastUploadedTab;
@@ -318,6 +361,57 @@
 				21F4378C2B949233004408EF /* RenameViewController.swift */,
 			);
 			path = Rename;
+			sourceTree = "<group>";
+		};
+		21F4378E2B94AA52004408EF /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				21F4378F2B94AA73004408EF /* ImageModel.swift */,
+				21F437912B94AA7B004408EF /* ImagePresenter.swift */,
+				21F437932B94AA89004408EF /* ImageViewController.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		21F437952B94EAAD004408EF /* General */ = {
+			isa = PBXGroup;
+			children = (
+				21F437962B94EAED004408EF /* Web */,
+				21F4377B2B9262FD004408EF /* PDF */,
+				21F4378E2B94AA52004408EF /* Image */,
+				21F437872B9491F3004408EF /* Rename */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		21F437962B94EAED004408EF /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				21F437972B94EAFF004408EF /* WebModel.swift */,
+				21F437992B94EB06004408EF /* WebPresenter.swift */,
+				21F4379B2B94EB0D004408EF /* WebViewController.swift */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		21F437A12B9505C5004408EF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				21F437A22B9505EF004408EF /* ProfileModel.swift */,
+				21F437A42B9505F8004408EF /* ProfilePresenter.swift */,
+				21F437A62B95060A004408EF /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		21F437AC2B95B95C004408EF /* PublicFiles */ = {
+			isa = PBXGroup;
+			children = (
+				21F437AD2B95B97E004408EF /* PublicModel.swift */,
+				21F437AF2B95B98A004408EF /* PublicPresenter.swift */,
+				21F437B12B95B992004408EF /* PublicViewController.swift */,
+			);
+			path = PublicFiles;
 			sourceTree = "<group>";
 		};
 		603D3D56733B7F818102BD45 /* Pods */ = {
@@ -445,42 +539,60 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F4373A2B910728004408EF /* LoginPresenter.swift in Sources */,
-				21F437812B92632E004408EF /* LastUploadedPDFViewController.swift in Sources */,
+				21F437812B92632E004408EF /* PDFViewController.swift in Sources */,
 				21F437442B91D27D004408EF /* DataStructures.swift in Sources */,
 				21F437782B925E8D004408EF /* SecondOnboardingPresenter.swift in Sources */,
+				21F437922B94AA7B004408EF /* ImagePresenter.swift in Sources */,
 				21F4378B2B949227004408EF /* RenamePresenter.swift in Sources */,
+				21F437AE2B95B97E004408EF /* PublicModel.swift in Sources */,
+				21F437A72B95060A004408EF /* ProfileViewController.swift in Sources */,
+				21F437AA2B950F27004408EF /* Disk+CoreDataClass.swift in Sources */,
+				21F437B62B95C298004408EF /* Public+CoreDataProperties.swift in Sources */,
 				21365E362B8F02B3006CDC17 /* AppDelegate.swift in Sources */,
 				21F4374B2B91E11F004408EF /* LastUploadedViewController.swift in Sources */,
 				21F4377A2B925E8D004408EF /* SecondOnboardingModel.swift in Sources */,
 				21F437862B93B1CA004408EF /* AllFiles+CoreDataProperties.swift in Sources */,
 				21F437212B90C894004408EF /* SkillboxActivityIndicator.swift in Sources */,
+				21F4379E2B94EE48004408EF /* AllFilesModel.swift in Sources */,
 				21365E4F2B8F09FD006CDC17 /* FirstOnboardingPresenter.swift in Sources */,
 				21F4376E2B925188004408EF /* Reachability.swift in Sources */,
 				21365E4D2B8F09E6006CDC17 /* FirstOnboardingModel.swift in Sources */,
 				21F437792B925E8D004408EF /* SecondOnboardingViewController.swift in Sources */,
+				21F4379A2B94EB06004408EF /* WebPresenter.swift in Sources */,
 				21F4376A2B9244C8004408EF /* AppConfig.swift in Sources */,
 				21F437892B94921C004408EF /* RenameModel.swift in Sources */,
+				21F437A32B9505EF004408EF /* ProfileModel.swift in Sources */,
 				21F4375E2B920B83004408EF /* Files+CoreDataProperties.swift in Sources */,
 				21F4378D2B949233004408EF /* RenameViewController.swift in Sources */,
 				21F4374E2B91ECDD004408EF /* DefaultTableViewCell.swift in Sources */,
+				21F4379C2B94EB0D004408EF /* WebViewController.swift in Sources */,
 				21365E382B8F02B3006CDC17 /* SceneDelegate.swift in Sources */,
 				21F437472B91E106004408EF /* LastUploadedModel.swift in Sources */,
 				21365E5F2B8F4384006CDC17 /* ThirdOnboardingViewController.swift in Sources */,
 				21365E4A2B8F0656006CDC17 /* Constants.swift in Sources */,
+				21F437B02B95B98A004408EF /* PublicPresenter.swift in Sources */,
 				21F437382B91071B004408EF /* LoginModel.swift in Sources */,
-				21F4377F2B926325004408EF /* LastUploadedPDFPresenter.swift in Sources */,
+				21F4377F2B926325004408EF /* PDFPresenter.swift in Sources */,
 				21365E632B8F4398006CDC17 /* ThirdOnboardingModel.swift in Sources */,
 				21F437642B9234D7004408EF /* AllFilesViewController.swift in Sources */,
+				21F437982B94EAFF004408EF /* WebModel.swift in Sources */,
+				21F437A02B94EE4F004408EF /* AllFilesPresenter.swift in Sources */,
+				21F437AB2B950F27004408EF /* Disk+CoreDataProperties.swift in Sources */,
 				21F4373C2B910735004408EF /* LoginViewController.swift in Sources */,
 				21F4375D2B920B83004408EF /* Files+CoreDataClass.swift in Sources */,
 				21F437492B91E10F004408EF /* LastUploadedPresenter.swift in Sources */,
-				21F4377D2B92631B004408EF /* LastUploadedPDFModel.swift in Sources */,
+				21F4377D2B92631B004408EF /* PDFModel.swift in Sources */,
 				21365E552B8F1FF6006CDC17 /* UIKitExtensions.swift in Sources */,
+				21F437B22B95B992004408EF /* PublicViewController.swift in Sources */,
 				21365E512B8F0A0F006CDC17 /* FirstOnboardingViewController.swift in Sources */,
 				21F4376C2B924A10004408EF /* TabBarController.swift in Sources */,
 				21F4373E2B9198B9004408EF /* DataRequest.swift in Sources */,
+				21F437B52B95C298004408EF /* Public+CoreDataClass.swift in Sources */,
 				21F437852B93B1CA004408EF /* AllFiles+CoreDataClass.swift in Sources */,
+				21F437942B94AA89004408EF /* ImageViewController.swift in Sources */,
+				21F437902B94AA73004408EF /* ImageModel.swift in Sources */,
 				21365E612B8F438F006CDC17 /* ThirdOnboardingPresenter.swift in Sources */,
+				21F437A52B9505F8004408EF /* ProfilePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

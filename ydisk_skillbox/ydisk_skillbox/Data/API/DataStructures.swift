@@ -11,3 +11,8 @@ struct UploadedFiles {
     let id: String
     var url: URL?
 }
+
+struct DiskInfo {
+    let usedSpace: Int
+    let totalSpace: Int
+}

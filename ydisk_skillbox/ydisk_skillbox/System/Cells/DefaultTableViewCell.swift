@@ -46,6 +46,7 @@ class DefaultTableViewCell: UITableViewCell {
         filePreview.image = UIImage(data: image!)
         fileName.text = model.name
         fileInfo.text = String(size) + " кб " + date + " " + time
+        fileInfo.isHidden = model.type == "dir"
     }
     
     private func setupUI() {

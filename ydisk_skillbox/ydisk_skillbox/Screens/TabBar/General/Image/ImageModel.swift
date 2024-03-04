@@ -1,6 +1,6 @@
 import UIKit
 
-struct LastUploadedPDFModel {
+struct ImageModel {
     var title: String?
     var file: UploadedFiles?
     
@@ -10,7 +10,7 @@ struct LastUploadedPDFModel {
     }
     
     private mutating func makeModelInfo() {
-        title = Constants.Texts.titlePDF
+        title = Constants.Texts.titleImage
     }
     
     mutating func loadFile(_ data: UploadedFiles) {

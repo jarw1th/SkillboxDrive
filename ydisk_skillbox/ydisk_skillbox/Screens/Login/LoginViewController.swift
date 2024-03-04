@@ -5,6 +5,8 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     // MARK: Presenter
     private var presenter: LoginPresenterProtocol?
     
+    private let button = UIButton()
+    
     // MARK: Body
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,6 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
         
         let stackView = UIStackView()
         let image = UIImageView()
-        let button = UIButton()
         
         view.addSubview(stackView)
         stackView.snp.makeConstraints({ make in
@@ -56,6 +57,15 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     @objc private func pushViewController() {
-        self.navigationController?.pushViewController(TabBarController(), animated: true)
+        let reachability: Reachability = Reachability()
+        if reachability.isConnectedToNetwork() {
+            let appConfig: AppConfig = AppConfig()
+            appConfig.setAuthorizationStatus(true)
+            appConfig.synchronize()
+            self.navigationController?.pushViewController(TabBarController(), animated: true)
+        } else {
+            button.setTitle("Отсутсвует соединение", for: .normal)
+            button.backgroundColor = Constants.Colors.Icons
+        }
     }
 }
