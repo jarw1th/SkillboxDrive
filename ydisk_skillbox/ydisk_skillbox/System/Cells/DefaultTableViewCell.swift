@@ -2,12 +2,13 @@ import UIKit
 import SnapKit
 
 class DefaultTableViewCell: UITableViewCell {
+    // MARK: Variables
     private let stackView = UIStackView()
     private let filePreview = UIImageView()
     private let fileName = UILabel()
     private let fileInfo = UILabel()
     
-    
+    // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -17,6 +18,7 @@ class DefaultTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Body
     override func prepareForReuse() {
         super.prepareForReuse()
         filePreview.image = UIImage()
@@ -37,6 +39,7 @@ class DefaultTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    // MARK: Functions
     func configure(with model: UploadedFiles?) {
         let model = model!
         let size = Int(model.size / 1024)
@@ -49,6 +52,7 @@ class DefaultTableViewCell: UITableViewCell {
         fileInfo.isHidden = model.type == "dir"
     }
     
+    // MARK: Private functions
     private func setupUI() {
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints({ make in

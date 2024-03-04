@@ -269,14 +269,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		21F437622B9234BF004408EF /* AllFiles */ = {
+		21F437622B9234BF004408EF /* AllFilesTab */ = {
 			isa = PBXGroup;
 			children = (
 				21F4379D2B94EE48004408EF /* AllFilesModel.swift */,
 				21F4379F2B94EE4F004408EF /* AllFilesPresenter.swift */,
 				21F437632B9234D7004408EF /* AllFilesViewController.swift */,
 			);
-			path = AllFiles;
+			path = AllFilesTab;
 			sourceTree = "<group>";
 		};
 		21F4376F2B925D3D004408EF /* Screens */ = {
@@ -304,11 +304,10 @@
 			isa = PBXGroup;
 			children = (
 				21F4376B2B924A10004408EF /* TabBarController.swift */,
-				21F437AC2B95B95C004408EF /* PublicFiles */,
-				21F437A12B9505C5004408EF /* Profile */,
 				21F437952B94EAAD004408EF /* General */,
+				21F437B72B95C6F1004408EF /* ProfileTab */,
 				21F437822B9378AC004408EF /* LastUploadedTab */,
-				21F437622B9234BF004408EF /* AllFiles */,
+				21F437622B9234BF004408EF /* AllFilesTab */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -412,6 +411,15 @@
 				21F437B12B95B992004408EF /* PublicViewController.swift */,
 			);
 			path = PublicFiles;
+			sourceTree = "<group>";
+		};
+		21F437B72B95C6F1004408EF /* ProfileTab */ = {
+			isa = PBXGroup;
+			children = (
+				21F437AC2B95B95C004408EF /* PublicFiles */,
+				21F437A12B9505C5004408EF /* Profile */,
+			);
+			path = ProfileTab;
 			sourceTree = "<group>";
 		};
 		603D3D56733B7F818102BD45 /* Pods */ = {

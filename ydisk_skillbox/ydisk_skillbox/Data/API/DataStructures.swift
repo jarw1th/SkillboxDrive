@@ -1,5 +1,6 @@
 import Foundation
 
+// MARK: Files Struct
 struct UploadedFiles {
     let name: String
     let preview: Data?
@@ -12,6 +13,7 @@ struct UploadedFiles {
     var url: URL?
 }
 
+// MARK: Disk information Struct
 struct DiskInfo {
     let usedSpace: Int
     let totalSpace: Int

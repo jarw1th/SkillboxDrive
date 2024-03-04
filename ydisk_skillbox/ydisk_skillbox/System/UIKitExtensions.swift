@@ -8,6 +8,7 @@ extension UIButton {
         self.tintColor = color ?? UIColor.systemBlue
     }
     
+    // For .normal state
     func setImageTintColor(_ color: UIColor?) {
         setImageTintColor(color, for: .normal)
     }
@@ -83,16 +84,16 @@ extension String {
 }
 
 extension UINavigationItem {
+    // Extension for setting title and subtitle
     func setTitle(title: String, subtitle: String) {
-        
         let one = UILabel()
         one.text = title
-        one.font = UIFont.systemFont(ofSize: 17)
+        one.font = Constants.Fonts.Header2
         one.sizeToFit()
         
         let two = UILabel()
         two.text = subtitle
-        two.font = UIFont.systemFont(ofSize: 12)
+        two.font = Constants.Fonts.SmallText
         two.textAlignment = .center
         two.sizeToFit()
         

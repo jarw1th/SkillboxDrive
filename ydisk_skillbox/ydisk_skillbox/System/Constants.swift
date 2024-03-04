@@ -1,6 +1,8 @@
 import UIKit
 
+// MARK: Constants
 enum Constants {
+    // MARK: Fonts
     enum Fonts {
         static var Header1: UIFont {
             return UIFont.systemFont(ofSize: 26, weight: .semibold)
@@ -23,6 +25,7 @@ enum Constants {
         }
     }
     
+    // MARK: Color set
     enum Colors {
         static var Accent1: UIColor? {
             return UIColor(named: "Accent1")
@@ -45,6 +48,7 @@ enum Constants {
         }
     }
     
+    // MARK: Texts
     enum Texts {
         static let FirstOnboardingHeader2Text = "Теперь все ваши \nдокументы в одном месте"
         
@@ -73,8 +77,17 @@ enum Constants {
         static let titleImage = "Изображение"
         
         static let titleWeb = "Файл"
+        
+        static let imageExtensions = ["jpg", "jpeg", "png", "JPG", "JPEG", "PNG"]
+        
+        static let pdfExtensions = ["PDF", "pdf"]
+        
+        static let mcofficeExtensions = ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT"]
+        
+        static let fileExtensions = ["jpg", "jpeg", "png", "JPG", "JPEG", "PNG", "PDF", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT"]
     }
     
+    // MARK: Images data
     enum Images {
         static var FirstOnboardingImage: Data? {
             return UIImage(named: "FilesImage")?.pngData()

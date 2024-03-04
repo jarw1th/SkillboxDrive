@@ -2,14 +2,41 @@ import Foundation
 import Alamofire
 import CoreData
 
+protocol Requests {
+    // Giving last uploaded files list
+    func requestLastUploaded(completion: @escaping(([UploadedFiles]) -> ()))
+    
+    // Giving all files list in current path
+    func requestAllFiles(path: String, completion: @escaping(([UploadedFiles]) -> ()))
+    
+    // Giving files that are published
+    func requestPublicFiles(completion: @escaping(([UploadedFiles]) -> ()))
+    
+    // Giving disk information
+    func requestDiskInfo(completion: @escaping((DiskInfo) -> ()))
+}
+
+protocol Deleting {
+    // Delete the file by its path
+    func deleteFile(path: String, completion: @escaping ((Bool) -> ()))
+    
+    // Remove file from published ones
+    func deletePublic(path: String, completion: @escaping ((Bool) -> ()))
+    
+    // Cleaning documents directory and coredata entities
+    func deleteEverything()
+}
+
 class DataRequest {
     // MARK: Variables
-    private let token = "y0_AgAAAAAn-NtRAAtgngAAAAD8tJn9AACQ5oedjzJG86CWLVl94BOUHptshg"
-    private var jsonDict: [String: Any]? = [:]
-    private var limit: Int = 8
+    private let token = "y0_AgAAAAAn-NtRAAtgngAAAAD8tJn9AACQ5oedjzJG86CWLVl94BOUHptshg"     // My disk's token
+    private var jsonDict: [String: Any]? = [:]      // Downloaded files saving here
+    private var limit: Int = 8      // Starting limit for requests
     
+    // MARK: CoreData Variables
     private let persistentContainter = NSPersistentContainer(name: "Model")
     
+    // Last uploaded files data controller
     private lazy var fetchedResultsController: NSFetchedResultsController<Files> = {
         let fetchRequest = Files.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -22,6 +49,7 @@ class DataRequest {
         return fetchedResultsController
         }()
     
+    // All files by path data controller
     private lazy var fetchedResultsControllerAll: NSFetchedResultsController<AllFiles> = {
         let fetchRequest = AllFiles.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -34,9 +62,10 @@ class DataRequest {
         return fetchedResultsController
         }()
     
+    // Disk information data controller
     private lazy var fetchedResultsControllerDisk: NSFetchedResultsController<Disk> = {
         let fetchRequest = Disk.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "usedSpace", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         let fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
@@ -46,6 +75,7 @@ class DataRequest {
         return fetchedResultsController
         }()
     
+    // Published files data controller
     private lazy var fetchedResultsControllerPublic: NSFetchedResultsController<Public> = {
         let fetchRequest = Public.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -60,6 +90,7 @@ class DataRequest {
 
     // MARK: Initial
     init() {
+        // Performing fetch for each entity
         persistentContainter.loadPersistentStores(completionHandler: { persistentStoreDescription, error in
             if let error = error {
                 print(error, error.localizedDescription)
@@ -67,6 +98,8 @@ class DataRequest {
                 do {
                     try self.fetchedResultsControllerAll.performFetch()
                     try self.fetchedResultsController.performFetch()
+                    try self.fetchedResultsControllerDisk.performFetch()
+                    try self.fetchedResultsControllerPublic.performFetch()
                 } catch {
                     print(error)
                 }
@@ -75,230 +108,37 @@ class DataRequest {
     }
     
     // MARK: Functions (variables)
+    // Change limit for file uploading (not working)
     func changeLimit(_ limit: Int) {
         self.limit = limit
     }
     
+    // Return limit for file uploading (not working)
     func getLimit() -> Int {
         return self.limit
     }
     
     // MARK: Functions
-    func requestLastUploaded(completion: @escaping(([UploadedFiles]) -> ())) {
-        // Check network connection
-        let reachability = Reachability()
-        if !reachability.isConnectedToNetwork() {
-            completion(cacheLastUploadedFiles())
-            return
-        }
-        
-        let fields = "&fields=items.name,items.created,items.size,items.path,items.public_url,items.type,items.md5"
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/last-uploaded?limit=8" + fields + "&preview_size=25x&preview_crop=true"
-        let group = DispatchGroup()
-        var lastUploadedList: [UploadedFiles] = []
-        
-        dataRequest(url: url, group: group)
-        
-        // Notify on data request group
-        group.notify(queue: DispatchQueue.global(), execute: {
-            print("api>")
-            let groupInner = DispatchGroup()
-            let items = self.jsonDict?["items"] as? Array<[String: Any]>
-            items?.forEach({ item in
-                groupInner.enter()
-                let name = item["name"] as? String ?? String()
-                var preview: Data?
-                let date = (item["created"] as? String ?? String()).toDate(with: "yyyy-MM-dd'T'HH:mm:ssZ") ?? Date()
-                let size = item["size"] as? Int ?? Int()
-                let path = item["path"] as? String ?? String()
-                let publicUrl = item["public_url"] as? String ?? String()
-                let type = item["type"] as? String ?? String()
-                let id = item["md5"] as? String ?? String()
-                var fileUrl: URL?
-                
-                self.downloadPreview(name: name, path: path, completion: { url in
-                    let reasons = (name.fileExtension() == "jpeg" || name.fileExtension() == "jpg" || name.fileExtension() == "png") && (url != nil)
-                    preview = reasons ? try! Data(contentsOf: url!) : Data()
-                    fileUrl = url
-                    print("check")
-                    let gotData = UploadedFiles(name: name,
-                                                preview: preview,
-                                                created: date,
-                                                size: size,
-                                                path: path,
-                                                publicUrl: publicUrl,
-                                                type: type,
-                                                id: id,
-                                                url: fileUrl)
-                    lastUploadedList.append(gotData)
-                    groupInner.leave()
-                })
-            })
-            
-            groupInner.notify(queue: DispatchQueue.global(), execute: {
-                print("<api cache>")
-                self.checkingLastUploadedCache(lastUploadedList)
-                print("<cache")
-                completion(lastUploadedList)
-            })
-        })
-    }
-    
-    func requestAllFiles(path: String, completion: @escaping(([UploadedFiles]) -> ())) {
-        // Check network connection
-        let reachability = Reachability()
-        if !reachability.isConnectedToNetwork() {
-            completion(cacheAllFiles())
-            return
-        }
-        
-        let fields = "&fields=_embedded.items.name,_embedded.items.created,_embedded.items.size,_embedded.items.path,_embedded.items.public_url,_embedded.items.type,_embedded.items.md5"
-        let url = "https://cloud-api.yandex.net/v1/disk/resources?path=" + path + fields + "&preview_size=25x&preview_crop=true"
-        let group = DispatchGroup()
-        var allList: [UploadedFiles] = []
-        
-        dataRequest(url: url, group: group)
-        
-        // Notify on data request group
-        group.notify(queue: DispatchQueue.global(), execute: {
-            print("api>")
-            let groupInner = DispatchGroup()
-            let embedded = self.jsonDict?["_embedded"] as? [String: Any]
-            let items = embedded?["items"] as? Array<[String: Any]>
-            items?.forEach({ item in
-                groupInner.enter()
-                let name = item["name"] as? String ?? String()
-                var preview: Data?
-                let date = (item["created"] as? String ?? String()).toDate(with: "yyyy-MM-dd'T'HH:mm:ssZ") ?? Date()
-                let size = item["size"] as? Int ?? Int()
-                let path = item["path"] as? String ?? String()
-                let publicUrl = item["public_url"] as? String ?? String()
-                let type = item["type"] as? String ?? String()
-                let id = item["md5"] as? String ?? String()
-                var fileUrl: URL?
-                
-                self.downloadPreview(name: name, path: path, completion: { url in
-                    let reasons = (name.fileExtension() == "jpeg" || name.fileExtension() == "jpg" || name.fileExtension() == "png") && (url != nil)
-                    preview = reasons ? try! Data(contentsOf: url!) : Data()
-                    fileUrl = url
-                    print("check")
-                    let gotData = UploadedFiles(name: name,
-                                                preview: preview,
-                                                created: date,
-                                                size: size,
-                                                path: path,
-                                                publicUrl: publicUrl,
-                                                type: type,
-                                                id: id,
-                                                url: fileUrl)
-                    allList.append(gotData)
-                    groupInner.leave()
-                })
-            })
-            
-            groupInner.notify(queue: DispatchQueue.global(), execute: {
-                print("<api cache>")
-                self.checkingAllFilesCache(allList)
-                print("<cache")
-                completion(allList)
-            })
-        })
-    }
-    
-    func requestPublicFiles(completion: @escaping(([UploadedFiles]) -> ())) {
-        // Check network connection
-        let reachability = Reachability()
-        if !reachability.isConnectedToNetwork() {
-            completion(cachePublicFiles())
-            return
-        }
-        
-        let fields = "&fields=items.name,items.created,items.size,items.path,items.public_url,items.type,items.md5"
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/public?limit=12" + fields + "&preview_size=25x&preview_crop=true"
-        let group = DispatchGroup()
-        var publicList: [UploadedFiles] = []
-        
-        dataRequest(url: url, group: group)
-        
-        // Notify on data request group
-        group.notify(queue: DispatchQueue.global(), execute: {
-            print("api>")
-            let groupInner = DispatchGroup()
-            let items = self.jsonDict?["items"] as? Array<[String: Any]>
-            items?.forEach({ item in
-                groupInner.enter()
-                let name = item["name"] as? String ?? String()
-                var preview: Data?
-                let date = (item["created"] as? String ?? String()).toDate(with: "yyyy-MM-dd'T'HH:mm:ssZ") ?? Date()
-                let size = item["size"] as? Int ?? Int()
-                let path = item["path"] as? String ?? String()
-                let publicUrl = item["public_url"] as? String ?? String()
-                let type = item["type"] as? String ?? String()
-                let id = item["md5"] as? String ?? String()
-                
-                self.downloadPreview(name: name, path: path, completion: { url in
-                    let reasons = (name.fileExtension() == "jpeg" || name.fileExtension() == "jpg" || name.fileExtension() == "png") && (url != nil)
-                    preview = reasons ? try! Data(contentsOf: url!) : Data()
-                    print("check")
-                    let gotData = UploadedFiles(name: name,
-                                                preview: preview,
-                                                created: date,
-                                                size: size,
-                                                path: path,
-                                                publicUrl: publicUrl,
-                                                type: type,
-                                                id: id)
-                    publicList.append(gotData)
-                    groupInner.leave()
-                })
-            })
-            
-            groupInner.notify(queue: DispatchQueue.global(), execute: {
-                print("<api cache>")
-                self.checkingPublicCache(publicList)
-                print("<cache")
-                completion(publicList)
-            })
-        })
-    }
-    
-    func requestDiskInfo(completion: @escaping((DiskInfo) -> ())) {
-        // Check network connection
-        let reachability = Reachability()
-        if !reachability.isConnectedToNetwork() {
-            completion(cacheDisk())
-            return
-        }
-        
-        let url = "https://cloud-api.yandex.net/v1/disk/"
-        let group = DispatchGroup()
-        
-        dataRequest(url: url, group: group)
-        
-        // Notify on data request group
-        group.notify(queue: DispatchQueue.global(), execute: {
-            let usedSpace = self.jsonDict?["used_space"] as? Int ?? Int()
-            let totalSpace = self.jsonDict?["total_space"] as? Int ?? Int()
-            let diskInfo = DiskInfo(usedSpace: usedSpace, totalSpace: totalSpace)
-            self.checkingDiskCache(diskInfo)
-            completion(diskInfo)
-        })
-    }
-
+    // Changing name of file
     func changeName(oldName: String, newName: String, path: String, completion: @escaping ((Bool) -> ())) {
         // Check network connection
         let reachability = Reachability()
         if !reachability.isConnectedToNetwork() {
             completion(false)
+            return
         }
         
+        // Start file path with old name
         let from = path
+        // New file path with new name
         let to = path.components(separatedBy: oldName).first! + newName
         
         let url = "https://cloud-api.yandex.net/v1/disk/resources/move?from=" + from + "&path=" + to + "&overwrite=true"
+        // Dispatch group for request
         let group = DispatchGroup()
         
         group.enter()
+        // Alamofire request
         AF.request(url,
                    method: .post,
                    headers: ["Content-Type": "application/json; charset=utf-8",
@@ -306,6 +146,7 @@ class DataRequest {
                                                                            completionHandler: { response in
                     if let error = response.error {
                         print(error)
+                        completion(false)
                     } else {
                         group.leave()
                     }
@@ -315,106 +156,18 @@ class DataRequest {
         group.notify(queue: DispatchQueue.global(), execute: {
             completion(true)
         })
-    }
-    
-    func deleteFile(path: String, completion: @escaping ((Bool) -> ())) {
-        let reachability = Reachability()
-        if !reachability.isConnectedToNetwork() {
-            completion(false)
-        }
-        
-        let url = "https://cloud-api.yandex.net/v1/disk/resources?path=" + path
-        let group = DispatchGroup()
-        
-        group.enter()
-        AF.request(url,
-                   method: .delete,
-                   headers: ["Content-Type": "application/json; charset=utf-8",
-                             "Authorization": "OAuth \(token)"]).response(queue: DispatchQueue.global(),
-                                                                           completionHandler: { response in
-                    if let error = response.error {
-                        print(error)
-                    } else {
-                        group.leave()
-                    }
-                })
-        
-        // Notify on group
-        group.notify(queue: DispatchQueue.global(), execute: {
-            completion(true)
-        })
-    }
-    
-    func deletePublic(path: String, completion: @escaping ((Bool) -> ())) {
-        let reachability = Reachability()
-        if !reachability.isConnectedToNetwork() {
-            completion(false)
-        }
-        
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/unpublish?path=" + path
-        let group = DispatchGroup()
-        
-        group.enter()
-        AF.request(url,
-                   method: .put,
-                   headers: ["Content-Type": "application/json; charset=utf-8",
-                             "Authorization": "OAuth \(token)"]).response(queue: DispatchQueue.global(),
-                                                                           completionHandler: { response in
-                    if let error = response.error {
-                        print(error)
-                    } else {
-                        group.leave()
-                    }
-                })
-        
-        // Notify on group
-        group.notify(queue: DispatchQueue.global(), execute: {
-            completion(true)
-        })
-    }
-    
-    func deleteEverything() {
-        let files = self.fetchedResultsController.fetchedObjects ?? []
-        let allFiles = self.fetchedResultsControllerAll.fetchedObjects ?? []
-        let disk = self.fetchedResultsControllerDisk.fetchedObjects ?? []
-        let publicFiles = self.fetchedResultsControllerPublic.fetchedObjects ?? []
-        
-        for file in files {
-            persistentContainter.viewContext.delete(file)
-            try? persistentContainter.viewContext.save()
-        }
-        for file in allFiles {
-            persistentContainter.viewContext.delete(file)
-            try? persistentContainter.viewContext.save()
-        }
-        for file in publicFiles {
-            persistentContainter.viewContext.delete(file)
-            try? persistentContainter.viewContext.save()
-        }
-        for el in disk {
-            persistentContainter.viewContext.delete(el)
-            try? persistentContainter.viewContext.save()
-        }
-        
-        let documentUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        do {
-            let dir = try FileManager.default.contentsOfDirectory(at: documentUrl, includingPropertiesForKeys: [])
-            for el in dir {
-                try FileManager.default.removeItem(at: el)
-            }
-        } catch {
-            print("error while deleting")
-        }
-        
     }
     
     // MARK: Private Functions
+    // Loading cache files from request and deleting not existed files
     private func checkingLastUploadedCache(_ uploadedList: [UploadedFiles]) {
+        // files - fetched objects for File entity; ids - array of ids; uploadedList = array of UploadedFiles objects
         var files = self.fetchedResultsController.fetchedObjects ?? []
         var ids: [String] = []
         uploadedList.forEach({ ids.append($0.id) })
         var uploadedList = uploadedList
         
+        // Removing objects if they are already existed
         for el in files {
             let id = el.id ?? String()
             if ids.contains(id) {
@@ -424,14 +177,17 @@ class DataRequest {
             }
         }
         
+        // Removing objects from cache if they are not in the request
         if ids.count < files.count {
             for el in files {
                 persistentContainter.viewContext.delete(el)
                 try? persistentContainter.viewContext.save()
             }
         }
+        // End function if nothing to add to cache
         if ids.isEmpty {return}
         
+        // Adding data to cache
         for i in 0...ids.count-1 {
             let file = Files.init(entity: NSEntityDescription.entity(forEntityName: "Files",
                                                                      in: self.persistentContainter.viewContext)!,
@@ -448,12 +204,15 @@ class DataRequest {
         }
     }
     
+    // Loading cache files from request and deleting not existed files
     private func checkingAllFilesCache(_ uploadedList: [UploadedFiles]) {
+        // files - fetched objects for AllFiles entity; ids - array of ids; uploadedList = array of UploadedFiles objects
         var files = self.fetchedResultsControllerAll.fetchedObjects ?? []
         var ids: [String] = []
         uploadedList.forEach({ ids.append($0.id) })
         var uploadedList = uploadedList
         
+        // Removing objects if they are already existed
         for el in files {
             let id = el.id ?? String()
             if ids.contains(id) {
@@ -463,14 +222,17 @@ class DataRequest {
             }
         }
         
+        // Removing objects from cache if they are not in the request
         if ids.count < files.count {
             for el in files {
                 persistentContainter.viewContext.delete(el)
                 try? persistentContainter.viewContext.save()
             }
         }
+        // End function if nothing to add to cache
         if ids.isEmpty {return}
         
+        // Adding data to cache
         for i in 0...ids.count-1 {
             let file = AllFiles.init(entity: NSEntityDescription.entity(forEntityName: "AllFiles",
                                                                      in: self.persistentContainter.viewContext)!,
@@ -487,12 +249,15 @@ class DataRequest {
         }
     }
     
+    // Loading cache files from request and deleting not existed files
     private func checkingPublicCache(_ uploadedList: [UploadedFiles]) {
+        // files - fetched objects for Public entity; ids - array of ids; uploadedList = array of UploadedFiles objects
         var files = self.fetchedResultsControllerPublic.fetchedObjects ?? []
         var ids: [String] = []
         uploadedList.forEach({ ids.append($0.id) })
         var uploadedList = uploadedList
         
+        // Removing objects if they are already existed
         for el in files {
             let id = el.id ?? String()
             if ids.contains(id) {
@@ -502,14 +267,17 @@ class DataRequest {
             }
         }
         
+        // Removing objects from cache if they are not in the request
         if ids.count < files.count {
             for el in files {
                 persistentContainter.viewContext.delete(el)
                 try? persistentContainter.viewContext.save()
             }
         }
+        // End function if nothing to add to cache
         if ids.isEmpty {return}
         
+        // Adding data to cache
         for i in 0...ids.count-1 {
             let file = Public.init(entity: NSEntityDescription.entity(forEntityName: "Public",
                                                                      in: self.persistentContainter.viewContext)!,
@@ -526,9 +294,12 @@ class DataRequest {
         }
     }
     
+    // Loading cache files from request and deleting not existed files
     private func checkingDiskCache(_ disk: DiskInfo) {
+        // files - fetched objects for Disk entity
         let files = self.fetchedResultsControllerDisk.fetchedObjects ?? []
         
+        // Creating cache if files is empty
         if files.isEmpty {
             let file = Disk.init(entity: NSEntityDescription.entity(forEntityName: "Disk",
                                                                      in: self.persistentContainter.viewContext)!,
@@ -538,12 +309,16 @@ class DataRequest {
             try? self.persistentContainter.viewContext.save()
             return
         }
+        
+        // Creating cache into 0 index of files
         files[0].usedSpace = Int64(disk.usedSpace)
         files[0].totalSpace = Int64(disk.totalSpace)
         try? self.persistentContainter.viewContext.save()
     }
 
+    // Set request info into global private variable jsonDict
     private func dataRequest(url: String, group: DispatchGroup) {
+        // Dispatch group enter
         group.enter()
         
         AF.request(url,
@@ -560,10 +335,13 @@ class DataRequest {
                 })
     }
     
+    // Give cache for last uploaded files
     private func cacheLastUploadedFiles() -> [UploadedFiles] {
+        // lastUploadedList - empty array; files - fetched objects for File entity
         var lastUploadedList: [UploadedFiles] = []
         let files = self.fetchedResultsController.fetchedObjects ?? []
         
+        // Appending every object information into lastUploadedList array
         for file in files {
             let name = file.name ?? String()
             let preview = file.preview ?? Data()
@@ -591,10 +369,13 @@ class DataRequest {
         return lastUploadedList
     }
     
+    // Give cache for all files
     private func cacheAllFiles() -> [UploadedFiles] {
-        var lastUploadedList: [UploadedFiles] = []
+        // allFilesList - empty array; files - fetched objects for AllFiles entity
+        var allFilesList: [UploadedFiles] = []
         let files = self.fetchedResultsControllerAll.fetchedObjects ?? []
         
+        // Appending every object information into allFilesList array
         for file in files {
             let name = file.name ?? String()
             let preview = file.preview ?? Data()
@@ -616,16 +397,19 @@ class DataRequest {
                                         id: id,
                                         url: url)
             
-            lastUploadedList.append(gotData)
+            allFilesList.append(gotData)
         }
         
-        return lastUploadedList
+        return allFilesList
     }
     
+    // Give cache for published files
     private func cachePublicFiles() -> [UploadedFiles] {
-        var lastUploadedList: [UploadedFiles] = []
+        // publicFilesList - empty array; files - fetched objects for Public entity
+        var publicFilesList: [UploadedFiles] = []
         let files = self.fetchedResultsControllerPublic.fetchedObjects ?? []
         
+        // Appending every object information into publicFilesList array
         for file in files {
             let name = file.name ?? String()
             let preview = file.preview ?? Data()
@@ -647,32 +431,28 @@ class DataRequest {
                                         id: id,
                                         url: url)
             
-            lastUploadedList.append(gotData)
+            publicFilesList.append(gotData)
         }
         
-        return lastUploadedList
+        return publicFilesList
     }
     
+    // Give cache for disk information
     private func cacheDisk() -> DiskInfo {
+        // files - fetched objects for Disk entity
         let files = self.fetchedResultsControllerDisk.fetchedObjects
         
+        // Checking if there is files array
         guard let used = files else {
             return DiskInfo(usedSpace: 0, totalSpace: 0)
         }
+        // Returning 0 index of files array
         return DiskInfo(usedSpace: Int(files?[0].usedSpace ?? 0), totalSpace: Int(files?[0].totalSpace ?? 0))
     }
-    
-    private func findNeededObject(_ id: String) -> Files? {
-        let objects = self.fetchedResultsController.fetchedObjects
-        for object in objects! {
-            if object.id == id {
-                return object
-            }
-        }
-        return nil
-    }
 
+    // Downloading preview file and saving into document directory
     private func downloadPreview(name: String, path: String, completion: @escaping ((URL?) -> ())) {
+        // documentUrl - URL for document directory with file name and extension
         var documentUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         documentUrl.appendPathComponent("preview_" + name.trimmingCharacters(in: .whitespacesAndNewlines))
         let destination: DownloadRequest.Destination = { _, _ in
@@ -686,6 +466,7 @@ class DataRequest {
         
         group.notify(queue: DispatchQueue.global(), execute: {
             guard let href = URL(string: self.jsonDict?["href"] as? String ?? String()) else {return}
+            // Alamofire donwload after getting link
             AF.download(
                 href,
                 method: .get,
@@ -703,4 +484,384 @@ class DataRequest {
     }
 }
 
+// MARK: Requests protocol
+extension DataRequest: Requests {
+    // Request for last uploaded files
+    func requestLastUploaded(completion: @escaping(([UploadedFiles]) -> ())) {
+        // Check network connection
+        let reachability = Reachability()
+        if !reachability.isConnectedToNetwork() {
+            // Returning cached files if lost connection
+            completion(cacheLastUploadedFiles())
+            return
+        }
+        
+        // fields - fields that needed to appear in the request result; lastUploadedList - empty array
+        let fields = "&fields=items.name,items.created,items.size,items.path,items.public_url,items.type,items.md5"
+        let url = "https://cloud-api.yandex.net/v1/disk/resources/last-uploaded?limit=8" + fields + "&preview_size=25x&preview_crop=true"
+        let group = DispatchGroup()
+        var lastUploadedList: [UploadedFiles] = []
+        
+        dataRequest(url: url, group: group)
+        
+        // Notify on data request group
+        group.notify(queue: DispatchQueue.global(), execute: {
+            // Dispatch group for downloading preview
+            let groupInner = DispatchGroup()
+            let items = self.jsonDict?["items"] as? Array<[String: Any]>
+            items?.forEach({ item in
+                groupInner.enter()
+                // Setting parametrs
+                let name = item["name"] as? String ?? String()
+                var preview: Data = Data()
+                let date = (item["created"] as? String ?? String()).toDate(with: "yyyy-MM-dd'T'HH:mm:ssZ") ?? Date()
+                let size = item["size"] as? Int ?? Int()
+                let path = item["path"] as? String ?? String()
+                let publicUrl = item["public_url"] as? String ?? String()
+                let type = item["type"] as? String ?? String()
+                let id = item["md5"] as? String ?? String()
+                var fileUrl: URL?
+                
+                // Checking if it needs to be downloaded (file extension checking)
+                if Constants.Texts.fileExtensions.contains(name.fileExtension()) {
+                    self.downloadPreview(name: name, path: path, completion: { url in
+                        // Setting preview if it is image and url is not nil
+                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension())) && (url != nil)
+                        preview = reasons ? try! Data(contentsOf: url!) : Data()
+                        fileUrl = url
+                        let gotData = UploadedFiles(name: name,
+                                                    preview: preview,
+                                                    created: date,
+                                                    size: size,
+                                                    path: path,
+                                                    publicUrl: publicUrl,
+                                                    type: type,
+                                                    id: id,
+                                                    url: fileUrl)
+                        lastUploadedList.append(gotData)
+                        groupInner.leave()
+                    })
+                } else {
+                    // Returning if it does not need to be downloaded
+                    let gotData = UploadedFiles(name: name,
+                                                preview: preview,
+                                                created: date,
+                                                size: size,
+                                                path: path,
+                                                publicUrl: publicUrl,
+                                                type: type,
+                                                id: id,
+                                                url: fileUrl)
+                    lastUploadedList.append(gotData)
+                    groupInner.leave()
+                }
+            })
+            
+            groupInner.notify(queue: DispatchQueue.global(), execute: {
+                // Saving and removing data cache
+                self.checkingLastUploadedCache(lastUploadedList)
+          
+                completion(lastUploadedList)
+            })
+        })
+    }
+    
+    // Request for all files
+    func requestAllFiles(path: String, completion: @escaping(([UploadedFiles]) -> ())) {
+        // Check network connection
+        let reachability = Reachability()
+        if !reachability.isConnectedToNetwork() {
+            // Returning cached files if lost connection
+            completion(cacheAllFiles())
+            return
+        }
+        
+        // fields - fields that needed to appear in the request result; allList - empty array
+        let fields = "&fields=_embedded.items.name,_embedded.items.created,_embedded.items.size,_embedded.items.path,_embedded.items.public_url,_embedded.items.type,_embedded.items.md5"
+        let url = "https://cloud-api.yandex.net/v1/disk/resources?path=" + path + fields + "&preview_size=25x&preview_crop=true"
+        let group = DispatchGroup()
+        var allList: [UploadedFiles] = []
+        
+        dataRequest(url: url, group: group)
+        
+        // Notify on data request group
+        group.notify(queue: DispatchQueue.global(), execute: {
+            // Dispatch group for downloading preview
+            let groupInner = DispatchGroup()
+            let embedded = self.jsonDict?["_embedded"] as? [String: Any]
+            let items = embedded?["items"] as? Array<[String: Any]>
+            items?.forEach({ item in
+                groupInner.enter()
+                // Setting parametrs
+                let name = item["name"] as? String ?? String()
+                var preview: Data = Data()
+                let date = (item["created"] as? String ?? String()).toDate(with: "yyyy-MM-dd'T'HH:mm:ssZ") ?? Date()
+                let size = item["size"] as? Int ?? Int()
+                let path = item["path"] as? String ?? String()
+                let publicUrl = item["public_url"] as? String ?? String()
+                let type = item["type"] as? String ?? String()
+                let id = item["md5"] as? String ?? String()
+                var fileUrl: URL?
+                
+                // Checking if it needs to be downloaded (file extension checking)
+                if Constants.Texts.fileExtensions.contains(name.fileExtension()) {
+                    self.downloadPreview(name: name, path: path, completion: { url in
+                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension())) && (url != nil)
+                        // Setting preview if it is image and url is not nil
+                        preview = reasons ? try! Data(contentsOf: url!) : Data()
+                        fileUrl = url
+                        let gotData = UploadedFiles(name: name,
+                                                    preview: preview,
+                                                    created: date,
+                                                    size: size,
+                                                    path: path,
+                                                    publicUrl: publicUrl,
+                                                    type: type,
+                                                    id: id,
+                                                    url: fileUrl)
+                        allList.append(gotData)
+                        groupInner.leave()
+                    })
+                } else {
+                    // Returning if it does not need to be downloaded
+                    let gotData = UploadedFiles(name: name,
+                                                preview: preview,
+                                                created: date,
+                                                size: size,
+                                                path: path,
+                                                publicUrl: publicUrl,
+                                                type: type,
+                                                id: id,
+                                                url: fileUrl)
+                    allList.append(gotData)
+                    groupInner.leave()
+                }
+            })
+            
+            groupInner.notify(queue: DispatchQueue.global(), execute: {
+                // Saving and removing data cache
+                self.checkingAllFilesCache(allList)
+                
+                completion(allList)
+            })
+        })
+    }
+    
+    // Request for published files
+    func requestPublicFiles(completion: @escaping(([UploadedFiles]) -> ())) {
+        // Check network connection
+        let reachability = Reachability()
+        if !reachability.isConnectedToNetwork() {
+            // Returning cached files if lost connection
+            completion(cachePublicFiles())
+            return
+        }
+        
+        // fields - fields that needed to appear in the request result; publicList - empty array
+        let fields = "&fields=items.name,items.created,items.size,items.path,items.public_url,items.type,items.md5"
+        let url = "https://cloud-api.yandex.net/v1/disk/resources/public?limit=12" + fields + "&preview_size=25x&preview_crop=true"
+        let group = DispatchGroup()
+        var publicList: [UploadedFiles] = []
+        
+        dataRequest(url: url, group: group)
+        
+        // Notify on data request group
+        group.notify(queue: DispatchQueue.global(), execute: {
+            // Dispatch group for downloading preview
+            let groupInner = DispatchGroup()
+            let items = self.jsonDict?["items"] as? Array<[String: Any]>
+            items?.forEach({ item in
+                groupInner.enter()
+                // Setting parametrs
+                let name = item["name"] as? String ?? String()
+                var preview: Data?
+                let date = (item["created"] as? String ?? String()).toDate(with: "yyyy-MM-dd'T'HH:mm:ssZ") ?? Date()
+                let size = item["size"] as? Int ?? Int()
+                let path = item["path"] as? String ?? String()
+                let publicUrl = item["public_url"] as? String ?? String()
+                let type = item["type"] as? String ?? String()
+                let id = item["md5"] as? String ?? String()
+                
+                // Checking if it needs to be downloaded (file extension checking)
+                if Constants.Texts.fileExtensions.contains(name.fileExtension()) {
+                    self.downloadPreview(name: name, path: path, completion: { url in
+                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension())) && (url != nil)
+                        // Setting preview if it is image and url is not nil
+                        preview = reasons ? try! Data(contentsOf: url!) : Data()
+                        let gotData = UploadedFiles(name: name,
+                                                    preview: preview,
+                                                    created: date,
+                                                    size: size,
+                                                    path: path,
+                                                    publicUrl: publicUrl,
+                                                    type: type,
+                                                    id: id)
+                        publicList.append(gotData)
+                        groupInner.leave()
+                    })
+                } else {
+                    // Returning if it does not need to be downloaded
+                    let gotData = UploadedFiles(name: name,
+                                                preview: preview,
+                                                created: date,
+                                                size: size,
+                                                path: path,
+                                                publicUrl: publicUrl,
+                                                type: type,
+                                                id: id)
+                    publicList.append(gotData)
+                    groupInner.leave()
+                }
+            })
+            
+            groupInner.notify(queue: DispatchQueue.global(), execute: {
+                // Saving and removing data cache
+                self.checkingPublicCache(publicList)
+                
+                completion(publicList)
+            })
+        })
+    }
+    
+    // Request for disk information
+    func requestDiskInfo(completion: @escaping((DiskInfo) -> ())) {
+        // Check network connection
+        let reachability = Reachability()
+        if !reachability.isConnectedToNetwork() {
+            // Returning cached information if lost connection
+            completion(cacheDisk())
+            return
+        }
+        
+        let url = "https://cloud-api.yandex.net/v1/disk/"
+        let group = DispatchGroup()
+        
+        dataRequest(url: url, group: group)
+        
+        // Notify on data request group
+        group.notify(queue: DispatchQueue.global(), execute: {
+            // Setting parametrs
+            let usedSpace = self.jsonDict?["used_space"] as? Int ?? Int()
+            let totalSpace = self.jsonDict?["total_space"] as? Int ?? Int()
+            let diskInfo = DiskInfo(usedSpace: usedSpace, totalSpace: totalSpace)
+            
+            // Saving and removing data cache
+            self.checkingDiskCache(diskInfo)
+            
+            completion(diskInfo)
+        })
+    }
+}
 
+// MARK: Deleting protocol
+extension DataRequest: Deleting {
+    // Delete file by its path
+    func deleteFile(path: String, completion: @escaping ((Bool) -> ())) {
+        let reachability = Reachability()
+        if !reachability.isConnectedToNetwork() {
+            // Returning false if lost connection
+            completion(false)
+            return
+        }
+        
+        let url = "https://cloud-api.yandex.net/v1/disk/resources?path=" + path
+        let group = DispatchGroup()
+        
+        group.enter()
+        // Alamofire delete request
+        AF.request(url,
+                   method: .delete,
+                   headers: ["Content-Type": "application/json; charset=utf-8",
+                             "Authorization": "OAuth \(token)"]).response(queue: DispatchQueue.global(),
+                                                                           completionHandler: { response in
+                    if let error = response.error {
+                        print(error)
+                        completion(false)
+                        return
+                    } else {
+                        group.leave()
+                    }
+                })
+        
+        // Notify on group
+        group.notify(queue: DispatchQueue.global(), execute: {
+            // Returning true
+            completion(true)
+        })
+    }
+    
+    // Remove file from public list by its path
+    func deletePublic(path: String, completion: @escaping ((Bool) -> ())) {
+        let reachability = Reachability()
+        if !reachability.isConnectedToNetwork() {
+            // Returning false if lost connection
+            completion(false)
+            return
+        }
+        
+        let url = "https://cloud-api.yandex.net/v1/disk/resources/unpublish?path=" + path
+        let group = DispatchGroup()
+        
+        group.enter()
+        // Alamofire delete request
+        AF.request(url,
+                   method: .put,
+                   headers: ["Content-Type": "application/json; charset=utf-8",
+                             "Authorization": "OAuth \(token)"]).response(queue: DispatchQueue.global(),
+                                                                           completionHandler: { response in
+                    if let error = response.error {
+                        print(error)
+                        completion(false)
+                        return
+                    } else {
+                        group.leave()
+                    }
+                })
+        
+        // Notify on group
+        group.notify(queue: DispatchQueue.global(), execute: {
+            // Returning true
+            completion(true)
+        })
+    }
+    
+    // Delete all cached data
+    func deleteEverything() {
+        // files - fetched objects for File entity; allFiles - fetched objects for AllFiles entity; disk - fetched objects for Disk entity; publicFiles - fetched objects for Public entity
+        let files = self.fetchedResultsController.fetchedObjects ?? []
+        let allFiles = self.fetchedResultsControllerAll.fetchedObjects ?? []
+        let disk = self.fetchedResultsControllerDisk.fetchedObjects ?? []
+        let publicFiles = self.fetchedResultsControllerPublic.fetchedObjects ?? []
+        
+        // Deleting all objects in every entity
+        for file in files {
+            persistentContainter.viewContext.delete(file)
+            try? persistentContainter.viewContext.save()
+        }
+        for file in allFiles {
+            persistentContainter.viewContext.delete(file)
+            try? persistentContainter.viewContext.save()
+        }
+        for file in publicFiles {
+            persistentContainter.viewContext.delete(file)
+            try? persistentContainter.viewContext.save()
+        }
+        for el in disk {
+            persistentContainter.viewContext.delete(el)
+            try? persistentContainter.viewContext.save()
+        }
+        
+        // Getting document directory
+        let documentUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        // Deleting every item in this directory
+        do {
+            let dir = try FileManager.default.contentsOfDirectory(at: documentUrl, includingPropertiesForKeys: [])
+            for el in dir {
+                try FileManager.default.removeItem(at: el)
+            }
+        } catch {
+            print("error while deleting")
+        }
+        
+    }
+}
