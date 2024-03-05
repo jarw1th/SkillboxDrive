@@ -9,5 +9,6 @@ target 'ydisk_skillbox' do
   pod 'SnapKit'
   pod 'Alamofire'
   pod 'PieCharts'
+  pod 'SwiftLint'
 
 end

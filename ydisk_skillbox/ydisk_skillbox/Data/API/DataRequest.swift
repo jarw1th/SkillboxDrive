@@ -28,8 +28,11 @@ protocol Deleting {
 }
 
 class DataRequest {
+    // MARK: Data Config
+    private let config: DataConfig?
+    
     // MARK: Variables
-    private let token = "y0_AgAAAAAn-NtRAAtgngAAAAD8tJn9AACQ5oedjzJG86CWLVl94BOUHptshg"     // My disk's token
+    private var token: String = String()    // My disk's token
     private var jsonDict: [String: Any]? = [:]      // Downloaded files saving here
     private var limit: Int = 8      // Starting limit for requests
     
@@ -90,6 +93,10 @@ class DataRequest {
 
     // MARK: Initial
     init() {
+        // Setting config and token
+        config = DataConfig()
+        self.token = config?.getToken() ?? String()
+        
         // Performing fetch for each entity
         persistentContainter.loadPersistentStores(completionHandler: { persistentStoreDescription, error in
             if let error = error {
@@ -133,7 +140,7 @@ class DataRequest {
         // New file path with new name
         let to = path.components(separatedBy: oldName).first! + newName
         
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/move?from=" + from + "&path=" + to + "&overwrite=true"
+        let url = config?.getChangingNameLink(from: from, to: to) ?? String()
         // Dispatch group for request
         let group = DispatchGroup()
         
@@ -330,7 +337,8 @@ class DataRequest {
                     if let error = response.error {
                         print(error)
                     } else {
-                        self.jsonDict = try! JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
+                        self.jsonDict = try? JSONSerialization.jsonObject(with: response.data!, 
+                                                                          options: []) as? [String: Any]
                         group.leave()
                     }
                 })
@@ -469,7 +477,7 @@ class DataRequest {
             return (documentUrl, [.removePreviousFile])
         }
         
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/download?path=" + path
+        let url = config?.getDownloadingLink(path: path) ?? String()
         let group = DispatchGroup()
         
         dataRequest(url: url, group: group)
@@ -506,9 +514,8 @@ extension DataRequest: Requests {
             return
         }
         
-        // fields - fields that needed to appear in the request result; lastUploadedList - empty array
-        let fields = "&fields=items.name,items.created,items.size,items.path,items.public_url,items.type,items.md5"
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/last-uploaded?limit=8" + fields + "&preview_size=25x&preview_crop=true"
+        // lastUploadedList - empty array
+        let url = config?.getLastUploadedLink() ?? String()
         let group = DispatchGroup()
         var lastUploadedList: [UploadedFiles] = []
         
@@ -586,9 +593,8 @@ extension DataRequest: Requests {
             return
         }
         
-        // fields - fields that needed to appear in the request result; allList - empty array
-        let fields = "&fields=_embedded.items.name,_embedded.items.created,_embedded.items.size,_embedded.items.path,_embedded.items.public_url,_embedded.items.type,_embedded.items.md5"
-        let url = "https://cloud-api.yandex.net/v1/disk/resources?path=" + path + fields + "&preview_size=25x&preview_crop=true"
+        // allList - empty array
+        let url = config?.getAllFilesLink(path: path) ?? String()
         let group = DispatchGroup()
         var allList: [UploadedFiles] = []
         
@@ -667,9 +673,8 @@ extension DataRequest: Requests {
             return
         }
         
-        // fields - fields that needed to appear in the request result; publicList - empty array
-        let fields = "&fields=items.name,items.created,items.size,items.path,items.public_url,items.type,items.md5"
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/public?limit=12" + fields + "&preview_size=25x&preview_crop=true"
+        // publicList - empty array
+        let url = config?.getPublicFilesLink() ?? String()
         let group = DispatchGroup()
         var publicList: [UploadedFiles] = []
         
@@ -743,7 +748,7 @@ extension DataRequest: Requests {
             return
         }
         
-        let url = "https://cloud-api.yandex.net/v1/disk/"
+        let url = config?.getDiskInfoLink() ?? String()
         let group = DispatchGroup()
         
         dataRequest(url: url, group: group)
@@ -774,7 +779,7 @@ extension DataRequest: Deleting {
             return
         }
         
-        let url = "https://cloud-api.yandex.net/v1/disk/resources?path=" + path
+        let url = config?.getDeleteFileLink(path: path) ?? String()
         let group = DispatchGroup()
         
         group.enter()
@@ -809,7 +814,7 @@ extension DataRequest: Deleting {
             return
         }
         
-        let url = "https://cloud-api.yandex.net/v1/disk/resources/unpublish?path=" + path
+        let url = config?.getUnpublishFileLink(path: path) ?? String()
         let group = DispatchGroup()
         
         group.enter()
