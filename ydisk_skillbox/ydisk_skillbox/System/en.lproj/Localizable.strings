@@ -55,3 +55,5 @@
 "deleteText" = "This file will be deleted";
 
 "deleteButton" = "Delete";
+
+"noConnection" = "No Connection";

@@ -108,6 +108,8 @@ enum Constants {
         
         static let deleteButton = NSLocalizedString("deleteButton", comment: "")
         
+        static let noConnection = NSLocalizedString("noConnection", comment: "")
+        
         static let imageExtensions = ["jpg", "jpeg", "png", "JPG", "JPEG", "PNG"]
         
         static let pdfExtensions = ["PDF", "pdf"]
