@@ -543,8 +543,10 @@ extension DataRequest: Requests {
                 if Constants.Texts.fileExtensions.contains(name.fileExtension()) {
                     self.downloadPreview(name: name, path: path, completion: { url in
                         // Setting preview if it is image and url is not nil
-                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension())) && (url != nil)
-                        preview = reasons ? try! Data(contentsOf: url!) : Data()
+                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension()))
+                        if let data = try? Data(contentsOf: url!) {
+                            preview = reasons ? data : Data()
+                        }
                         fileUrl = url
                         let gotData = UploadedFiles(name: name,
                                                     preview: preview,
@@ -622,9 +624,11 @@ extension DataRequest: Requests {
                 // Checking if it needs to be downloaded (file extension checking)
                 if Constants.Texts.fileExtensions.contains(name.fileExtension()) {
                     self.downloadPreview(name: name, path: path, completion: { url in
-                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension())) && (url != nil)
                         // Setting preview if it is image and url is not nil
-                        preview = reasons ? try! Data(contentsOf: url!) : Data()
+                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension()))
+                        if let data = try? Data(contentsOf: url!) {
+                            preview = reasons ? data : Data()
+                        }
                         fileUrl = url
                         let gotData = UploadedFiles(name: name,
                                                     preview: preview,
@@ -700,9 +704,11 @@ extension DataRequest: Requests {
                 // Checking if it needs to be downloaded (file extension checking)
                 if Constants.Texts.fileExtensions.contains(name.fileExtension()) {
                     self.downloadPreview(name: name, path: path, completion: { url in
-                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension())) && (url != nil)
                         // Setting preview if it is image and url is not nil
-                        preview = reasons ? try! Data(contentsOf: url!) : Data()
+                        let reasons = (Constants.Texts.imageExtensions.contains(name.fileExtension()))
+                        if let data = try? Data(contentsOf: url!) {
+                            preview = reasons ? data : Data()
+                        }
                         let gotData = UploadedFiles(name: name,
                                                     preview: preview,
                                                     created: date,
