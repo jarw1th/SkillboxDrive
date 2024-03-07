@@ -10,7 +10,7 @@ protocol LoginPresenterProtocol: AnyObject {
 
 protocol LoginViewProtocol: AnyObject {}
 
-class LoginPresenter: LoginPresenterProtocol {
+final class LoginPresenter: LoginPresenterProtocol {
     private weak var view: LoginViewProtocol?
     
     private var model = LoginModel()

@@ -1,6 +1,6 @@
 import Foundation
 
-class SecondOnboardingPresenter: OnboardingPresenterProtocol {
+final class SecondOnboardingPresenter: OnboardingPresenterProtocol {
     private weak var view: OnboardingViewProtocol?
     
     private var model = SecondOnboardingModel()

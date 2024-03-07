@@ -22,7 +22,7 @@ protocol PDFViewProtocol: AnyObject {
     func popScreen()
 }
 
-class PDFPresenter: PDFPresenterProtocol {
+final class PDFPresenter: PDFPresenterProtocol {
     private let dataRequest = DataRequest()
     
     private weak var view: PDFViewProtocol?

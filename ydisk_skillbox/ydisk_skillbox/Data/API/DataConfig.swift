@@ -1,6 +1,6 @@
 import Foundation
 
-class DataConfig {
+final class DataConfig {
     private let token = "y0_AgAAAAAn-NtRAAtgngAAAAD8tJn9AACQ5oedjzJG86CWLVl94BOUHptshg"
     
     func getToken() -> String {

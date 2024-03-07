@@ -22,7 +22,7 @@ protocol LastUploadedViewProtocol: AnyObject {
     func stopRefreshing()
 }
 
-class LastUploadedPresenter: LastUploadedPresenterProtocol {
+final class LastUploadedPresenter: LastUploadedPresenterProtocol {
     private let dataRequest = DataRequest()
     
     private weak var view: LastUploadedViewProtocol?

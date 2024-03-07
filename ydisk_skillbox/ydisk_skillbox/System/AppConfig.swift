@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-class AppConfig {
+final class AppConfig {
     // MARK: Variables
     private let defaults = UserDefaults.standard
     

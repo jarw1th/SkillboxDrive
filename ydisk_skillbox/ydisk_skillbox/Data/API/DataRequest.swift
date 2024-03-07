@@ -27,7 +27,7 @@ protocol Deleting {
     func deleteEverything()
 }
 
-class DataRequest {
+final class DataRequest {
     // MARK: Data Config
     private let config: DataConfig?
     

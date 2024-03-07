@@ -1,6 +1,6 @@
 import UIKit
 
-class SkillboxActivityIndicator: UIView {
+final class SkillboxActivityIndicator: UIView {
     // MARK: Variables
     lazy private var animationLayer: CALayer = {
         return CALayer()

@@ -1,1 +1,23 @@
-# Settings
+disabled_rules:
+  - identifier_name
+
+custom_rules:
+    final_class:
+        included: ".*.swift"
+        name: "Final class requrement"
+        regex: '^class'
+        message: "All classes must be final or nonfinal"
+        saverity: error
+
+    required_init:
+        regex: 'required init\?\(coder: NSCoder\)'
+        message: "Use NL class instead"
+
+    foundation_using:
+        included: ".*.swift"
+        regex: 'import Foundation'
+        message: "Do you really need for Foundation ???"
+
+    class_protocol:
+        regex: ': class'
+        message: "Use Anyobject instead"

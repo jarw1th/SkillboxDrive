@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class DefaultTableViewCell: UITableViewCell {
+final class DefaultTableViewCell: UITableViewCell {
     // MARK: Variables
     private let stackView = UIStackView()
     private let filePreview = UIImageView()

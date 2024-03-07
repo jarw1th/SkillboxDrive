@@ -24,7 +24,7 @@ protocol ImageViewProtocol: AnyObject {
     func popScreen()
 }
 
-class ImagePresenter: ImagePresenterProtocol {
+final class ImagePresenter: ImagePresenterProtocol {
     private let dataRequest = DataRequest()
     
     private weak var view: ImageViewProtocol?

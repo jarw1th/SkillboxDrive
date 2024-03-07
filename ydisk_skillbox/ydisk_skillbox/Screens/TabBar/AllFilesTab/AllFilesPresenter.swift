@@ -22,7 +22,7 @@ protocol AllFilesViewProtocol: AnyObject {
     func stopRefreshing()
 }
 
-class AllFilesPresenter: AllFilesPresenterProtocol {
+final class AllFilesPresenter: AllFilesPresenterProtocol {
     private let dataRequest = DataRequest()
     
     private weak var view: AllFilesViewProtocol?

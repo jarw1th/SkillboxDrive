@@ -26,7 +26,7 @@ protocol ProfileViewProtocol: AnyObject {
     func popScreen()
 }
 
-class ProfilePresenter: ProfilePresenterProtocol {
+final class ProfilePresenter: ProfilePresenterProtocol {
     private let appConfig: AppConfig = AppConfig()
     
     private let dataRequest = DataRequest()

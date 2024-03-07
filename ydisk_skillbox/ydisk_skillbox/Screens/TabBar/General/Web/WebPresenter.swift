@@ -22,7 +22,7 @@ protocol WebViewProtocol: AnyObject {
     func popScreen()
 }
 
-class WebPresenter: WebPresenterProtocol {
+final class WebPresenter: WebPresenterProtocol {
     private let dataRequest = DataRequest()
     
     private weak var view: WebViewProtocol?

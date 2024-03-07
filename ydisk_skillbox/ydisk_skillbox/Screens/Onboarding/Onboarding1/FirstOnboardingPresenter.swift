@@ -14,7 +14,7 @@ protocol OnboardingPresenterProtocol: AnyObject {
 
 protocol OnboardingViewProtocol: AnyObject {}
 
-class FirstOnboardingPresenter: OnboardingPresenterProtocol {
+final class FirstOnboardingPresenter: OnboardingPresenterProtocol {
     private weak var view: OnboardingViewProtocol?
 
     private var model = FirstOnboardingModel()

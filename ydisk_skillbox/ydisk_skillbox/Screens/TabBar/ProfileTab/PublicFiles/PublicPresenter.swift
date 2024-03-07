@@ -26,7 +26,7 @@ protocol PublicViewProtocol: AnyObject {
     func stopRefreshing()
 }
 
-class PublicPresenter: PublicPresenterProtocol {
+final class PublicPresenter: PublicPresenterProtocol {
     private let dataRequest = DataRequest()
     
     private weak var view: PublicViewProtocol?

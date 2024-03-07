@@ -24,7 +24,7 @@ protocol RenameViewProtocol: AnyObject {
     func errorMessage()
 }
 
-class RenamePresenter: RenamePresenterProtocol {
+final class RenamePresenter: RenamePresenterProtocol {
     private let dataRequest = DataRequest()
     
     private weak var view: RenameViewProtocol?
