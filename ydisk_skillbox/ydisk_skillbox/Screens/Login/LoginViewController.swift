@@ -53,16 +53,13 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
         button.setTitleColor(Constants.Colors.White, for: .normal)
         button.titleLabel?.font = Constants.Fonts.ButtonText
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(pushViewController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(presentView), for: .touchUpInside)
     }
     
-    @objc private func pushViewController() {
+    @objc private func presentView() {
         let reachability: Reachability = Reachability()
         if reachability.isConnectedToNetwork() {
-            let appConfig: AppConfig = AppConfig()
-            appConfig.setAuthorizationStatus(true)
-            appConfig.synchronize()
-            self.navigationController?.pushViewController(TabBarController(), animated: true)
+            self.present(AuthorizationViewController(), animated: true)
         } else {
             button.setTitle("Отсутсвует соединение", for: .normal)
             button.backgroundColor = Constants.Colors.Icons

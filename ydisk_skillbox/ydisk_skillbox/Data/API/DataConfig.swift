@@ -1,10 +1,10 @@
 import Foundation
 
 final class DataConfig {
-    private let token = "y0_AgAAAAAn-NtRAAtgngAAAAD8tJn9AACQ5oedjzJG86CWLVl94BOUHptshg"
+    private let appConfig = AppConfig()
     
     func getToken() -> String {
-        return self.token
+        return appConfig.getToken()
     }
     
     func getChangingNameLink(from: String, to: String) -> String {
@@ -47,6 +47,16 @@ final class DataConfig {
     
     func getUnpublishFileLink(path: String) -> String {
         let result = "https://cloud-api.yandex.net/v1/disk/resources/unpublish?path=" + path
+        return result
+    }
+    
+    func getAuthorizationLink() -> String {
+        let result = "https://oauth.yandex.ru/authorize"
+        return result
+    }
+    
+    func getClientId() -> String {
+        let result = "772897b157794058adc0e041da46429e"
         return result
     }
 }

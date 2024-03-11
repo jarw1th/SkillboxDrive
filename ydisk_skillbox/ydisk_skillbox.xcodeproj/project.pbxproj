@@ -18,6 +18,8 @@
 		21365E5F2B8F4384006CDC17 /* ThirdOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21365E5E2B8F4384006CDC17 /* ThirdOnboardingViewController.swift */; };
 		21365E612B8F438F006CDC17 /* ThirdOnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21365E602B8F438F006CDC17 /* ThirdOnboardingPresenter.swift */; };
 		21365E632B8F4398006CDC17 /* ThirdOnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21365E622B8F4398006CDC17 /* ThirdOnboardingModel.swift */; };
+		215797D22B9F78ED000B190A /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215797D12B9F78ED000B190A /* AuthorizationPresenter.swift */; };
+		215797D42B9F78FA000B190A /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215797D32B9F78FA000B190A /* AuthorizationViewController.swift */; };
 		21F4371F2B906AD5004408EF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21F4371E2B906AD5004408EF /* Launch Screen.storyboard */; };
 		21F437212B90C894004408EF /* SkillboxActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437202B90C894004408EF /* SkillboxActivityIndicator.swift */; };
 		21F437382B91071B004408EF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F437372B91071B004408EF /* LoginModel.swift */; };
@@ -86,6 +88,8 @@
 		21365E5E2B8F4384006CDC17 /* ThirdOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingViewController.swift; sourceTree = "<group>"; };
 		21365E602B8F438F006CDC17 /* ThirdOnboardingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingPresenter.swift; sourceTree = "<group>"; };
 		21365E622B8F4398006CDC17 /* ThirdOnboardingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdOnboardingModel.swift; sourceTree = "<group>"; };
+		215797D12B9F78ED000B190A /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
+		215797D32B9F78FA000B190A /* AuthorizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		21F4371E2B906AD5004408EF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		21F437202B90C894004408EF /* SkillboxActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillboxActivityIndicator.swift; sourceTree = "<group>"; };
 		21F437372B91071B004408EF /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -224,6 +228,15 @@
 			path = Onboarding3;
 			sourceTree = "<group>";
 		};
+		215797D02B9F78CD000B190A /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				215797D12B9F78ED000B190A /* AuthorizationPresenter.swift */,
+				215797D32B9F78FA000B190A /* AuthorizationViewController.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
 		21F437362B9106F6004408EF /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +306,7 @@
 			children = (
 				21F4371E2B906AD5004408EF /* Launch Screen.storyboard */,
 				21F437712B925D6E004408EF /* TabBar */,
+				215797D02B9F78CD000B190A /* Authorization */,
 				21F437362B9106F6004408EF /* Login */,
 				21F437702B925D4D004408EF /* Onboarding */,
 			);
@@ -453,7 +467,6 @@
 				21365E2F2B8F02B3006CDC17 /* Frameworks */,
 				21365E302B8F02B3006CDC17 /* Resources */,
 				CC41933126AB3A5301EC1496 /* [CP] Embed Pods Frameworks */,
-				21F437DC2B98477F004408EF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -514,24 +527,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21F437DC2B98477F004408EF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "
-";
-		};
 		4D8CF29CA78B2C894EE98F6F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -581,6 +576,7 @@
 				21F4373A2B910728004408EF /* LoginPresenter.swift in Sources */,
 				21F437812B92632E004408EF /* PDFViewController.swift in Sources */,
 				21F437442B91D27D004408EF /* DataStructures.swift in Sources */,
+				215797D22B9F78ED000B190A /* AuthorizationPresenter.swift in Sources */,
 				21F437782B925E8D004408EF /* SecondOnboardingPresenter.swift in Sources */,
 				21F437922B94AA7B004408EF /* ImagePresenter.swift in Sources */,
 				21F4378B2B949227004408EF /* RenamePresenter.swift in Sources */,
@@ -622,6 +618,7 @@
 				21F4373C2B910735004408EF /* LoginViewController.swift in Sources */,
 				21F4375D2B920B83004408EF /* Files+CoreDataClass.swift in Sources */,
 				21F437492B91E10F004408EF /* LastUploadedPresenter.swift in Sources */,
+				215797D42B9F78FA000B190A /* AuthorizationViewController.swift in Sources */,
 				21F4377D2B92631B004408EF /* PDFModel.swift in Sources */,
 				21365E552B8F1FF6006CDC17 /* UIKitExtensions.swift in Sources */,
 				21F437B22B95B992004408EF /* PublicViewController.swift in Sources */,

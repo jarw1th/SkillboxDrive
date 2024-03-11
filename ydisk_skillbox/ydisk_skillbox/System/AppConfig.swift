@@ -17,6 +17,16 @@ final class AppConfig {
         defaults.setValue(isAuthorized, forKey: "isAuthorized")
     }
     
+    // Give token
+    func getToken() -> String {
+        return defaults.string(forKey: "token") ?? String()
+    }
+    
+    // Set token
+    func setToken(_ token: String) {
+        defaults.setValue(token, forKey: "token")
+    }
+    
     // Synchronize data
     func synchronize() {
         defaults.synchronize()

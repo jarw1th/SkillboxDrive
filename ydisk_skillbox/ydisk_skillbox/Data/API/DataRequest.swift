@@ -772,6 +772,17 @@ extension DataRequest: Requests {
             completion(diskInfo)
         })
     }
+    
+    func requestAuthorization(completion: @escaping((URLRequest?) -> ())) {
+        let url = config?.getAuthorizationLink() ?? String()
+        let clientId = config?.getClientId() ?? String()
+        
+        guard var urlComponents = URLComponents(string: url) else {return}
+        urlComponents.queryItems = [URLQueryItem(name: "response_type", value: "token"),
+                                    URLQueryItem(name: "client_id", value: clientId)]
+        guard let url = urlComponents.url else {return}
+        completion(URLRequest(url: url))
+    }
 }
 
 // MARK: Deleting protocol
